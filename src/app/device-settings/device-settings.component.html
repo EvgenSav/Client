@@ -1,0 +1,24 @@
+<div *ngIf='settings'>
+  <h2>Settings:</h2>
+  <div>{{id}}</div>
+  <div>{{type}}</div>
+  <div>
+    <span>Default On:</span><span>{{settings.IsDefaultOn}}</span>
+  </div>
+  <div>
+    <label>Dimmable:</label>
+    {{settings.IsDimmable}}
+  </div>
+  <div>
+    <label>Save state:</label>
+    {{settings.IsSaveState}}
+  </div>
+  <div>
+    <label>Dimmer correction, Low lvl</label>
+    <div>{{settings.DimCorrLvlLow}}</div>
+  </div>
+  <div>
+    <label>Dimmer correction, Hi lvl</label>
+    <div>{{settings.DimCorrLvlHi}}</div>
+  </div>
+</div>

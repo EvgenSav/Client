@@ -1,0 +1,31 @@
+<div *ngIf='isDataOk'>
+  <div>
+    <a [routerLink]="['/dashboard']">Dashboard</a>
+  </div>
+  <div>
+    <ul class="nav nav-pills">
+      <li class='nav-item'>
+        <a class='nav-link' routerLink='settings/{{16}}' [routerLinkActive]="['active']">Base settings</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' routerLink='settings/{{17}}' [routerLinkActive]="['active']">Dimmer settings</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' routerLink='settings/{{18}}' [routerLinkActive]="['active']">On settings</a>
+      </li>
+    </ul>
+
+  </div>
+  <div>
+    <h3>{{dev.name}}</h3>
+  </div>
+  <div>
+    <label>State:</label>
+    <div>{{dev.state}}</div>
+  </div>
+  <div>
+    <label>Type: </label>
+    <div>{{dev.type}}</div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
