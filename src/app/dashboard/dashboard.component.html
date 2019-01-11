@@ -1,7 +1,7 @@
-<div>
+<div *ngIf='(devList$ | async) !== null'>
   Dashboard!!!!!!!!
   <div class='card-deck'>
-    <div *ngFor='let dev of devList' class='card' style="width: 18rem;">
+    <div *ngFor='let dev of devList$ | async' class='card' style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{{dev.name}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">State {{dev.state ? 'on' : 'off'}}</h6>

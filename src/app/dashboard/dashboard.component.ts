@@ -1,12 +1,12 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { DevicesService } from '../devices.service';
 import { Observable } from 'rxjs';
-import { Device } from '../models/Device';
-import { UpdateService } from '../update.service';
-import { DevicesStoreService } from '../devices-store.service';
-import { Store } from '@ngrx/store';
-import { DevicesState } from '../store/devices/reducers';
+import { IDevice } from '../models/Device';
+import { Store, select } from '@ngrx/store';
+import { IDevicesState } from '../store/devices/reducer';
 import * as Actions from '../store/devices/actions';
+import * as Devices from '../store/devices/selectors';
+import { IAppState } from '../store/reducer';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,12 +15,12 @@ import * as Actions from '../store/devices/actions';
 })
 
 export class DashboardComponent implements OnInit, OnChanges {
-  devList: Device[];
-  constructor(private devService: DevicesService, private devStoreService: DevicesStoreService, private store: Store<DevicesState>) { }
+  devList$: Observable<IDevice[]>;
+  constructor(private devService: DevicesService, private store: Store<IAppState>) {
+    this.devList$ = this.store.select(Devices.getDevices);
+  }
   ngOnInit() {
     this.devService.getDevices().subscribe(devices => {
-      this.devStoreService.setDevicesList(devices);
-      this.devList = this.devStoreService.devices;
       this.store.dispatch(new Actions.LoadDevices(devices));
     });
   }

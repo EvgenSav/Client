@@ -1,11 +1,11 @@
-import { DeviceSettings } from "./DeviceSettings";
+import { IDeviceSettings } from "./DeviceSettings";
 
-export class Device {
+export interface IDevice {
     addr: number;
     name: string;
     channel: number;
     type: number;
     state: number;
     key: number;
-    settings: DeviceSettings = new DeviceSettings();
+    settings: IDeviceSettings;
 }

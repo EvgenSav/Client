@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Device } from './models/Device';
+import { IDevice } from './models/Device';
 import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DevicesStoreService {
-  devices: Device[];
+  devices: IDevice[];
   constructor() { }
-  deviceChanged: Subject<Device[]> = new Subject<Device[]>();
+  deviceChanged: Subject<IDevice[]> = new Subject<IDevice[]>();
   getDevices = () => {
     return this.devices;
   }
-  setDevicesList = (devList: Device[]) => {
+  setDevicesList = (devList: IDevice[]) => {
     this.devices = devList;
     this.deviceChanged.next(this.devices)
   }
-  updateDevice = (dev: Device) => {
+  updateDevice = (dev: IDevice) => {
     const devIdx = this.devices.findIndex(d => d.key == dev.key);
     if (devIdx !== -1) {
       this.devices[devIdx] = dev;

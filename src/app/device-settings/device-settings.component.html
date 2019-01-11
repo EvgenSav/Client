@@ -1,24 +1,29 @@
-<div *ngIf='settings'>
+<div>
   <h2>Settings:</h2>
   <div>{{id}}</div>
   <div>{{type}}</div>
   <div>
-    <span>Default On:</span><span>{{settings.IsDefaultOn}}</span>
+    <label>Default On:</label>
+    <input type='checkbox' [name]="Default On" [value]='{{(settings$ | async)?.isDefaultOn}}''>
   </div>
   <div>
     <label>Dimmable:</label>
-    {{settings.IsDimmable}}
+    {{(settings$ | async)?.isDimmable}}
   </div>
   <div>
     <label>Save state:</label>
-    {{settings.IsSaveState}}
+    {{(settings$ | async)?.isSaveState}}
   </div>
   <div>
     <label>Dimmer correction, Low lvl</label>
-    <div>{{settings.DimCorrLvlLow}}</div>
+    <div>{{(settings$ | async)?.dimCorrLvlLow}}</div>
   </div>
   <div>
     <label>Dimmer correction, Hi lvl</label>
-    <div>{{settings.DimCorrLvlHi}}</div>
+    <div>{{(settings$ | async)?.dimCorrLvlHi}}</div>
+  </div>
+  <div>
+    <label>On lvl</label>
+    <div>{{(settings$ | async)?.onLvl}}</div>
   </div>
 </div>

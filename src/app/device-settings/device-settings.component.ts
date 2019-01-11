@@ -1,8 +1,15 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { DevicesService } from '../devices.service';
-import { DeviceSettings } from '../models/DeviceSettings';
+import { IDeviceSettings } from '../models/DeviceSettings';
 import { ActivatedRoute } from '@angular/router';
 import { DevicesStoreService } from '../devices-store.service';
+import { Store, select } from '@ngrx/store';
+import { filter, find, map } from 'rxjs/operators'
+import { IAppState } from '../store/reducer';
+import { getDevices } from '../store/devices/selectors';
+import { Observable } from 'rxjs';
+import { settings } from 'cluster';
+import { IDevice } from '../models/Device';
 
 @Component({
   selector: 'app-device-settings',
@@ -10,16 +17,19 @@ import { DevicesStoreService } from '../devices-store.service';
   styleUrls: ['./device-settings.component.scss']
 })
 export class DeviceSettingsComponent implements OnInit {
-  settings: DeviceSettings;
+  settings$: Observable<IDeviceSettings>;
   type: number;
   id: number;
 
-  constructor(private devService: DevicesService, private route: ActivatedRoute, private store: DevicesStoreService) {
+  constructor(private devService: DevicesService, private route: ActivatedRoute, private store: Store<IAppState>) {
     this.route.params.subscribe(params => { this.handleChangeRoute() });
-    this.store.deviceChanged.subscribe(devices => {
+    this.settings$ = this.store.select(getDevices).pipe(map(devs => {
+      return devs.length > 0 ? devs.find(dev => dev.key === this.id).settings : null;
+    }));
+    /* this.store.deviceChanged.subscribe(devices => {
       this.settings = devices.find(dev => dev.key === this.id).settings;
       console.log('SUBSCRIPTION: devices updated');
-    });
+    }); */
   }
 
   handleChangeRoute = () => {

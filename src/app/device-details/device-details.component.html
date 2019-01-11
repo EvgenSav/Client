@@ -1,4 +1,4 @@
-<div *ngIf='isDataOk'>
+<div>
   <div>
     <a [routerLink]="['/dashboard']">Dashboard</a>
   </div>
@@ -17,15 +17,18 @@
 
   </div>
   <div>
-    <h3>{{dev.name}}</h3>
+    <input type="text" name="" id="" [defaultValue]="(dev$ | async)?.name" (change)='patchDevice()'>
+  </div>
+  <div>
+    <button (click)='patchDevice(123)'>Patch</button>
   </div>
   <div>
     <label>State:</label>
-    <div>{{dev.state}}</div>
+    <div>{{(dev$ | async)?.state}}</div>
   </div>
   <div>
     <label>Type: </label>
-    <div>{{dev.type}}</div>
+    <div>{{(dev$ | async)?.type}}</div>
   </div>
   <router-outlet></router-outlet>
 </div>

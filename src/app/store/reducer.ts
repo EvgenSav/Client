@@ -3,22 +3,22 @@ import {
     ActionReducer, MetaReducer
 } from '@ngrx/store';
 
-import { DevicesState } from './devices/reducers';
-import { devicesReducer } from './devices/reducers';
+import { IDevicesState } from './devices/reducer';
+import { devicesReducer } from './devices/reducer';
 
-export interface State {
-    devices: DevicesState;    
+export interface IAppState {
+    devices: IDevicesState;
 }
 
-export const reducer: ActionReducerMap<State> = {
+export const reducer: ActionReducerMap<IAppState, any> = {
     devices: devicesReducer
 };
-export function logger(reducer: ActionReducer<State>):
-    ActionReducer<State> {
-    return function (state: State, action: any): State {
+export function logger(reducer: ActionReducer<IAppState>):
+    ActionReducer<IAppState> {
+    return function (state: IAppState, action: any): IAppState {
         console.log('state', state);
         console.log('action', action);
         return reducer(state, action);
     };
 }
-export const metaReducers: MetaReducer<State>[] = [logger];
+export const metaReducers: MetaReducer<IAppState>[] = [logger];
