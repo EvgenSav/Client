@@ -1,27 +1,22 @@
-import { DevicesActions } from './actions';
-import { IDevice } from '../../models/Device';
+import { HomeActions } from './actions';
 import { actionTypes } from './actions';
 import update from 'immutability-helper';
 
-export interface IDevicesState {
-    devices: IDevice[],
-    device: IDevice,
-    selectedDevKey: number
+export interface IHomeState {
+    rooms: string[]
 }
-const initialState: IDevicesState = {
-    devices: [],
-    device: null,
-    selectedDevKey: null
+const initialState: IHomeState = {
+    rooms: []
 }
 
-export const devicesReducer = (state = initialState, action: DevicesActions): IDevicesState => {
+export const homeReducer = (state = initialState, action: HomeActions): IHomeState => {
     switch (action.type) {
-        case actionTypes.LOAD_ALL: {
+        case actionTypes.LOAD_ROOMS: {
             return {
-                ...state, devices: action.payload
+                ...state, rooms: action.payload
             };
         }
-        case actionTypes.UPDATE_DEVICE: {
+        /* case actionTypes.UPDATE_DEVICE: {
             const devices = state.devices;
             const updIdx = devices.findIndex(d => d.key === action.payload.key);
             const updatedDevs = update(devices, { $splice: [[updIdx, 1, action.payload]] });
@@ -33,7 +28,7 @@ export const devicesReducer = (state = initialState, action: DevicesActions): ID
             return {
                 ...state, selectedDevKey: action.payload
             }
-        }
+        } */
         default:
             return { ...state };
     }

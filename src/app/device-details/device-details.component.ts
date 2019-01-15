@@ -9,6 +9,7 @@ import { IAppState } from '../store/reducer';
 import { Store } from '@ngrx/store';
 import { getDevices } from '../store/devices/selectors';
 import { Patch, Operation } from '../patch-helper';
+import { getRooms } from '../store/home/selectors';
 
 @Component({
   selector: 'app-device-details',
@@ -17,13 +18,15 @@ import { Patch, Operation } from '../patch-helper';
 })
 export class DeviceDetailsComponent implements OnInit {
   dev$: Observable<IDevice>;
+  rooms$: Observable<string[]>;
   devId: number;
   constructor(private devService: DevicesService, private route: ActivatedRoute, private store: Store<IAppState>) {
     this.dev$ = this.store.select(getDevices).pipe(map(devs => devs.find(d => d.key === this.devId)));
+    this.rooms$ = this.store.select(getRooms);
   }
-  patchDevice = (value: any) => {
-    console.log(value);
-    const patch = new Patch(value, '/Name');    
+  patchDevice = (value: string, path: string) => {
+    console.log(value, path);
+    const patch = new Patch(value, path);
     this.devService.patchDevice(this.devId, patch).subscribe();
   }
   ngOnInit() {

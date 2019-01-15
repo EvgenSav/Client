@@ -17,10 +17,12 @@
 
   </div>
   <div>
-    <input type="text" name="" id="" [defaultValue]="(dev$ | async)?.name" (change)='patchDevice()'>
+    <input type="text" name="" id="" [defaultValue]="(dev$ | async)?.name" (change)='patchDevice($event.target.value, "/Name")'>
   </div>
   <div>
-    <button (click)='patchDevice(123)'>Patch</button>
+    <select name="" id="" (change)='patchDevice($event.target.value, "/Room")' [value]="(dev$ | async)?.room">
+      <option *ngFor='let room of rooms$ | async'>{{room}}</option>
+    </select>
   </div>
   <div>
     <label>State:</label>

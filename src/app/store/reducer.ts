@@ -5,13 +5,16 @@ import {
 
 import { IDevicesState } from './devices/reducer';
 import { devicesReducer } from './devices/reducer';
+import { IHomeState, homeReducer } from './home/reducer';
 
 export interface IAppState {
     devices: IDevicesState;
+    home: IHomeState;
 }
 
 export const reducer: ActionReducerMap<IAppState, any> = {
-    devices: devicesReducer
+    devices: devicesReducer,
+    home: homeReducer
 };
 export function logger(reducer: ActionReducer<IAppState>):
     ActionReducer<IAppState> {

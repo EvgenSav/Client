@@ -7,5 +7,6 @@ export interface IDevice {
     type: number;
     state: number;
     key: number;
+    room: string;
     settings: IDeviceSettings;
 }
