@@ -1,29 +1,37 @@
-<div>
+<form style="width: 25%; margin-left: auto; margin-right: auto">
   <h2>Settings:</h2>
   <div>{{id}}</div>
-  <div>{{type}}</div>
-  <div>
-    <label>Default On:</label>
-    <input type='checkbox' [name]="Default On" [value]='{{(settings$ | async)?.isDefaultOn}}''>
+  <div class="form-group form-check">
+    <input class="form-check-input" type="checkbox" [checked]='(settings$ | async)?.isDefaultOn'
+      (change)='handlePatchSetting($event.target.checked, "/IsDefaultOn")' id="defaultOn" />
+    <label class="form-check-label" for="defaultOn">Default On:</label>
   </div>
-  <div>
-    <label>Dimmable:</label>
-    {{(settings$ | async)?.isDimmable}}
+  <div class="form-group form-check">
+    <input class="form-check-input" type="checkbox" [checked]='(settings$ | async)?.isDimmable'
+      (change)='handlePatchSetting($event.target.checked, "/IsDimmable")' id="dimmable" />
+    <label class="form-check-label" for="dimmable">Dimmable:</label>
   </div>
-  <div>
-    <label>Save state:</label>
-    {{(settings$ | async)?.isSaveState}}
+  <div class="form-group form-check">
+    <input class="form-check-input" type="checkbox" [checked]='(settings$ | async)?.isSaveState'
+      (change)='handlePatchSetting($event.target.checked, "/IsSaveState")' id="saveState" />
+    <label class="form-check-label" for="saveState">Save state:</label>
   </div>
-  <div>
-    <label>Dimmer correction, Low lvl</label>
-    <div>{{(settings$ | async)?.dimCorrLvlLow}}</div>
+  <div class="form-group">
+    <label for="dimmerLow">Dimmer correction, Low lvl</label>
+    <input class="form-control" type="number" [value]='(settings$ | async)?.dimCorrLvlLow'
+      (change)='handlePatchSetting($event.target.value, "/DimCorrLvlLow")' id='dimmerLow'
+      [disabled]='!(settings$ | async)?.isDimmable' />
   </div>
-  <div>
-    <label>Dimmer correction, Hi lvl</label>
-    <div>{{(settings$ | async)?.dimCorrLvlHi}}</div>
+  <div class="form-group">
+    <label for="dimmerHi">Dimmer correction, Hi lvl</label>
+    <input class="form-control" type="number" [value]='(settings$ | async)?.dimCorrLvlHi'
+      (change)='handlePatchSetting($event.target.value, "/DimCorrLvlHi")' id='dimmerHi'
+      [disabled]='!(settings$ | async)?.isDimmable' />
   </div>
-  <div>
-    <label>On lvl</label>
-    <div>{{(settings$ | async)?.onLvl}}</div>
+  <div class="form-group">
+    <label for="onLvl">On lvl</label>
+    <input class="form-control" type="number" [value]='(settings$ | async)?.onLvl'
+      (change)='handlePatchSetting($event.target.value, "/OnLvl")' id='onLvl'
+      [disabled]='!(settings$ | async)?.isDimmable' />
   </div>
-</div>
+</form>

@@ -14,23 +14,24 @@
         <a class='nav-link' routerLink='settings/{{18}}' [routerLinkActive]="['active']">On settings</a>
       </li>
     </ul>
-
   </div>
-  <div>
-    <input type="text" name="" id="" [defaultValue]="(dev$ | async)?.name" (change)='patchDevice($event.target.value, "/Name")'>
-  </div>
-  <div>
-    <select name="" id="" (change)='patchDevice($event.target.value, "/Room")' [value]="(dev$ | async)?.room">
-      <option *ngFor='let room of rooms$ | async'>{{room}}</option>
-    </select>
-  </div>
-  <div>
-    <label>State:</label>
-    <div>{{(dev$ | async)?.state}}</div>
-  </div>
-  <div>
-    <label>Type: </label>
-    <div>{{(dev$ | async)?.type}}</div>
+  <div style="width: 25%; margin-left: auto; margin-right: auto">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="room">Room</span>
+      </div>
+      <select class='form-control' aria-describedby="room" (change)='patchDevice($event.target.value, "/Room")'
+        [value]="(dev$ | async)?.room">
+        <option *ngFor='let room of rooms$ | async'>{{room}}</option>
+      </select>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name">Name</span>
+      </div>
+      <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(dev$ | async)?.name"
+        (change)='patchDevice($event.target.value, "/Name")'>
+    </div>
   </div>
   <router-outlet></router-outlet>
 </div>

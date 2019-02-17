@@ -26,4 +26,7 @@ export class DevicesService {
   patchDevice = (devId: number, patch: Patch) => {
     return this.http.patch(`${this.baseUrl}/${devId}`, [patch]);
   }
+  patchSetting = (devId: number, settingType: number, patch: Patch) => {
+    return this.http.patch(`${this.baseUrl}/${devId}/settings/${settingType}`, [patch]);
+  }
 }

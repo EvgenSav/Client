@@ -10,6 +10,7 @@ import { getDevices } from '../store/devices/selectors';
 import { Observable } from 'rxjs';
 import { settings } from 'cluster';
 import { IDevice } from '../models/Device';
+import { Patch } from '../patch-helper';
 
 @Component({
   selector: 'app-device-settings',
@@ -31,7 +32,11 @@ export class DeviceSettingsComponent implements OnInit {
       console.log('SUBSCRIPTION: devices updated');
     }); */
   }
-
+  handlePatchSetting = (val: any, path: string) => {
+    const patch = new Patch(val, path);
+    console.log(this.id, this.type, patch);
+    this.devService.patchSetting(this.id, this.type, patch).subscribe();
+  }
   handleChangeRoute = () => {
     this.type = +this.route.snapshot.paramMap.get('type');
     this.id = +this.route.parent.snapshot.paramMap.get('devId');
