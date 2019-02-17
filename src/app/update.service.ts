@@ -15,8 +15,6 @@ export class UpdateService {
   connection: HubConnection;
   connectionStart = () => {
     this.connection = new HubConnectionBuilder().withUrl('/devicesHub').build();
-    this.connection.keepAliveIntervalInMilliseconds = 500;
-    this.connection.serverTimeoutInMilliseconds = 1000;
     this.connection.start().then(() => console.log('started')).catch(() => console.log('error'));
     this.connection.on('UpdateDevice', this.deviceUpdate);
     this.connection.onclose((error)=> console.log(error.message));
