@@ -11,14 +11,16 @@ import { StoreModule } from '@ngrx/store';
 import { reducer, metaReducers } from './store/reducer';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment'; // Angular CLI environemnt
+import { environment } from '../environments/environment';
+import { ActionLogComponent } from './action-log/action-log.component'; // Angular CLI environemnt
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     DeviceDetailsComponent,
-    DeviceSettingsComponent
+    DeviceSettingsComponent,
+    ActionLogComponent
   ],
   imports: [
     BrowserModule,

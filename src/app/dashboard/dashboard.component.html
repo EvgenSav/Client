@@ -2,11 +2,13 @@
   Dashboard!!!!!!!!
   <div class='card-columns'>
     <div *ngFor='let dev of devList$ | async' class='card'>
-      <div class="card-body">
+      <div class="my-card">
+        <button [className]="'card-remove'">x</button>
         <h5 class="card-title">{{dev.name}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">State {{dev.state ? 'on' : 'off'}}</h6>
         <p class="card-text">Description</p>
-        <button class="card-link" (click)='switch(dev.addr)'>Switch</button>
+        <button [className]=" dev.state ? 'btn btn-primary' : 'btn btn-outline-primary' "
+          (click)='switch(dev.addr)'>Switch {{dev.state ? 'off' : 'on'}}</button>
         <div><a [routerLink]="['/details', dev.key]">Details</a></div>
       </div>
     </div>

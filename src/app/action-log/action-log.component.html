@@ -1,0 +1,22 @@
+<div>
+  action-log works!
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Time Stamp</th>
+        <th scope="col">Device Id</th>
+        <th scope="col">Cmd</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let logItem of actionLog$  | async'>
+        <td>{{logItem.id}}</td>
+        <td>{{logItem.timeStamp}}</td>
+        <td>{{logItem.deviceFk}}</td>
+        <td>{{logItem.cmd}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
