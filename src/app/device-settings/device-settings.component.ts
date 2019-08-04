@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { DevicesService } from '../devices.service';
 import { IDeviceSettings } from '../models/DeviceSettings';
 import { ActivatedRoute } from '@angular/router';
-import { DevicesStoreService } from '../devices-store.service';
 import { Store, select } from '@ngrx/store';
 import { filter, find, map } from 'rxjs/operators'
 import { IAppState } from '../store/reducer';

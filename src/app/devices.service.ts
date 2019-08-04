@@ -29,4 +29,7 @@ export class DevicesService {
   patchSetting = (devId: number, settingType: number, patch: Patch) => {
     return this.http.patch(`${this.baseUrl}/${devId}/settings/${settingType}`, [patch]);
   }
+  setBright = (devId: number, bright: number) => {
+    return this.http.get(`${this.baseUrl}/${devId}/Brightness/${bright}`)
+  }
 }

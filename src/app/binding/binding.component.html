@@ -1,0 +1,16 @@
+<button type="button" class="btn btn-outline-success" (click)='[addNewBindRequest()]'>Add New</button>
+<div style='display: flex'>
+  <div *ngIf='(bindRequests$ | async) !== null'>
+    <div class='bind-container'>
+      <div *ngFor='let bindRequest of bindRequests$ | async' class='bind-request'>
+        <div>{{bindRequest?.name}}</div>
+        <div>{{bindRequest.deviceFk}}</div>
+        <div>{{bindRequest.deviceType}}</div>
+        <a [routerLink]="['details', bindRequest.id]" class="card-link">Details</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

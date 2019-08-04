@@ -1,0 +1,12 @@
+.bind-container {
+  display: flex;
+  flex-direction: column;
+}
+.bind-request {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 120px;
+  margin: 5px;
+  border: 1px solid green;
+}

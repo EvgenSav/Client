@@ -4,6 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeviceDetailsComponent } from './device-details/device-details.component';
 import { DeviceSettingsComponent } from './device-settings/device-settings.component';
 import { ActionLogComponent } from './action-log/action-log.component';
+import { BindingComponent } from './binding/binding.component';
+import { BindingDetailsComponent } from './binding-details/binding-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -16,6 +18,13 @@ const routes: Routes = [
       { path: 'actionLog', component: ActionLogComponent }
     ]
   },
+  {
+    path: 'binding',
+    component: BindingComponent,
+    children: [
+      {path: 'details/:id', component: BindingDetailsComponent}
+    ]
+  }
 ];
 
 @NgModule({

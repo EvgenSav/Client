@@ -1,8 +1,5 @@
 <div>
   <div>
-    <a [routerLink]="['/dashboard']">Dashboard</a>
-  </div>
-  <div>
     <ul class="nav nav-pills">
       <li class='nav-item'>
         <a class='nav-link' routerLink='settings/{{16}}' [routerLinkActive]="['active']">Base settings</a>
@@ -34,6 +31,13 @@
       </div>
       <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(dev$ | async)?.name"
         (change)='patchDevice($event.target.value, "/Name")'>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name">Bright</span>
+      </div>
+      <input class='form-control' type="text" aria-describedby="bright" [value]="(dev$ | async)?.bright"
+        (change)='setBright($event.target.value)'>
     </div>
   </div>
   <router-outlet></router-outlet>

@@ -1,12 +1,11 @@
 <div *ngIf='(devList$ | async) !== null'>
-  Dashboard!!!!!!!!
   <div class='card-columns'>
     <div *ngFor='let dev of devList$ | async' class='card'>
-      <div class="my-card">
+      <div class="card-body">
         <button [className]="'card-remove'">x</button>
         <h5 class="card-title">{{dev.name}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">State {{dev.state ? 'on' : 'off'}}</h6>
-        <p class="card-text">Description</p>
+        <p class="card-text">{{dev.bright}}</p>
         <button [className]=" dev.state ? 'btn btn-primary' : 'btn btn-outline-primary' "
           (click)='switch(dev.addr)'>Switch {{dev.state ? 'off' : 'on'}}</button>
         <div><a [routerLink]="['/details', dev.key]">Details</a></div>

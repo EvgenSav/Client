@@ -1,0 +1,18 @@
+<div *ngIf='(options$ | async) != null'>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="name">Name</span>
+    </div>
+    <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(request$ | async)?.name"
+      (change)='patchBindRequest($event.target.value, "/Name")' />
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="type">Type</span>
+    </div>
+    <select class='form-control' aria-describedby="type" (change)='patchBindRequest($event.target.value, "/Type")'>
+      <option *ngFor='let option of options$ | async' [value]='option.key'
+        [selected]='option.key == (request$ | async)?.type'>{{option.value}}</option>
+    </select>
+  </div>
+</div>

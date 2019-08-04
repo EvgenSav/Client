@@ -12,7 +12,9 @@ import { reducer, metaReducers } from './store/reducer';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { ActionLogComponent } from './action-log/action-log.component'; // Angular CLI environemnt
+import { ActionLogComponent } from './action-log/action-log.component';
+import { BindingComponent } from './binding/binding.component';
+import { BindingDetailsComponent } from './binding-details/binding-details.component'; // Angular CLI environemnt
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ActionLogComponent } from './action-log/action-log.component'; // Angul
     DashboardComponent,
     DeviceDetailsComponent,
     DeviceSettingsComponent,
-    ActionLogComponent
+    ActionLogComponent,
+    BindingComponent,
+    BindingDetailsComponent
   ],
   imports: [
     BrowserModule,

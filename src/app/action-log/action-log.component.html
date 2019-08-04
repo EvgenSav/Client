@@ -12,7 +12,7 @@
     <tbody>
       <tr *ngFor='let logItem of actionLog$  | async'>
         <td>{{logItem.id}}</td>
-        <td>{{logItem.timeStamp}}</td>
+        <td>{{logItem.timeStamp | date: 'short'}}</td>
         <td>{{logItem.deviceFk}}</td>
         <td>{{logItem.cmd}}</td>
       </tr>

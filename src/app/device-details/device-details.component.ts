@@ -29,6 +29,10 @@ export class DeviceDetailsComponent implements OnInit {
     const patch = new Patch(value, path);
     this.devService.patchDevice(this.devId, patch).subscribe();
   }
+  setBright = (brightValue: number) => {
+    console.log(brightValue);
+    this.devService.setBright(this.devId, brightValue).subscribe();
+  }
   ngOnInit() {
     this.devId = +this.route.snapshot.paramMap.get('devId');
     /* this.devService.getDeviceById(devId).subscribe(r => { this.dev = r; this.isDataOk = true; }); */

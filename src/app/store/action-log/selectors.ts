@@ -6,5 +6,5 @@ const actionLogState = (state: IAppState) => state.actionLog;
 
 export const getDeviceLog = createSelector(
     actionLogState,
-    (state: IActionLogState) => state.actionLogMap
+    (state: IActionLogState, devId: number) => state.actionLogMap.get(devId)
 );

@@ -2,6 +2,7 @@ import { IDeviceSettings } from "./DeviceSettings";
 
 export interface IDevice {
     addr: number;
+    bright: number;
     name: string;
     channel: number;
     type: number;
