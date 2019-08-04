@@ -12,4 +12,5 @@ export class BindingService {
   getBindRequests = () => this.hhtpClient.get<IBindRequest[]>(this.baseUrl);
   pathBindingRequest = (id: any, patch: any) => this.hhtpClient.patch<IBindRequest>(`${this.baseUrl}/${id}`, [patch]);
   addNewBindRequests = (bindRequest: IBindRequest) => this.hhtpClient.post<IBindRequest>(this.baseUrl, bindRequest);
+  executeBindRequest = (id: string) => this.hhtpClient.get(`${this.baseUrl}/Execute/${id}`)
 }

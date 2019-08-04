@@ -15,4 +15,6 @@
         [selected]='option.key == (request$ | async)?.type'>{{option.value}}</option>
     </select>
   </div>
+  <button [disabled]='(request$ | async)?.deviceFk' class='btn btn-primary'
+    (click)='executeBindRequest()'>Execute</button>
 </div>

@@ -27,6 +27,7 @@ export class BindingDetailsComponent implements OnInit {
     const patch = new Patch(val, path);
     this.bindService.pathBindingRequest(this.requestId, patch).subscribe(request => this.store.dispatch(new PatchBindRequest(this.requestId, request)))
   }
+  executeBindRequest = () => this.bindService.executeBindRequest(this.requestId).subscribe();
   ngOnInit() {
     this.options$ = this.store.select(getDeviceTypeOptions);
   }
