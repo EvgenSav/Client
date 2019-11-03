@@ -30,7 +30,8 @@ export class BindingComponent implements OnInit {
     const model: IBindRequest = {
       deviceFk: null,
       name: 'new device',
-      type: DeviceTypeEnum.PowerUnit
+      deviceType: DeviceTypeEnum.PowerUnit,
+      type: 0
     }
     this.bindService.addNewBindRequests(model).subscribe(bindRequest => this.store.dispatch(new AddNewBindRequest(bindRequest)));
   }

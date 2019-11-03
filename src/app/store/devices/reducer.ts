@@ -29,6 +29,13 @@ export const devicesReducer = (state = initialState, action: DevicesActions): ID
                 ...state, devices: updatedDevs
             }
         }
+        case actionTypes.ADD_DEVICE: {
+            const devices = state.devices;
+            const updatedDevs = update(devices, { $push: [action.payload] });
+            return {
+                ...state, devices: updatedDevs
+            }
+        }
         case actionTypes.SELECT_DEV: {
             return {
                 ...state, selectedDevKey: action.payload

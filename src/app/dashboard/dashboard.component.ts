@@ -26,7 +26,15 @@ export class DashboardComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
   }
-  switch = (id: number) => {
+  switch = (id: number, e: Event) => {
+    e.stopPropagation();
     this.devService.switchDevice(id).subscribe();
   };
+  setBright = (id: number, brightLvl: number, e: Event) => {
+    e.stopPropagation();
+    const bright = brightLvl < 0 ?
+      0 : brightLvl > 100 ?
+        100 : brightLvl;
+    this.devService.setBright(id, bright).subscribe();
+  }
 }

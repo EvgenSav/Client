@@ -5,7 +5,6 @@
       <div *ngFor='let bindRequest of bindRequests$ | async' class='bind-request'>
         <div>{{bindRequest?.name}}</div>
         <div>{{bindRequest.deviceFk}}</div>
-        <div>{{bindRequest.deviceType}}</div>
         <a [routerLink]="['details', bindRequest.id]" class="card-link">Details</a>
       </div>
     </div>
