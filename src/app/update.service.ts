@@ -7,7 +7,6 @@ import { Store } from '@ngrx/store';
 import { UpdateDevice, AddDevice } from './store/devices/actions';
 import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 import { IBindRequest } from './models/BindRequest';
-import { updateBinding } from '@angular/core/src/render3/instructions';
 import { PatchBindRequest } from './store/binding/actions';
 
 @Injectable({

@@ -10,7 +10,7 @@ import { HomeService } from './home.service';
 import { LoadRooms } from './store/home/actions';
 import { OptionsService } from './options.service';
 import { LoadGeneralOptions } from './store/options/actions';
-/* import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core'; */
+import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 
 @Component({
   selector: 'app-root',
@@ -22,14 +22,17 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private updService: UpdateService, private devService: DevicesService, private homeService: HomeService,
     private optionsService: OptionsService,
     private store: Store<IAppState>,
-    /* private idle: Idle */) { }
+    private idle: Idle) { }
   ngOnInit() {
     this.homeService.getRooms().subscribe(rooms => { this.store.dispatch(new LoadRooms(rooms)) });
     this.devService.getDevices().subscribe(devices => { this.store.dispatch(new LoadDevices(devices)) });
     this.optionsService.getGeneralOptions().subscribe(options => this.store.dispatch(new LoadGeneralOptions(options)))
     this.updService.connectionStart();
-    /* this.idle.onIdleStart.subscribe(() => console.log(`idle started ${Date.now}`));
-    this.idle.onIdleEnd.subscribe(() => console.log(`idle ended ${Date.now}`)); */
+    this.idle.onIdleStart.subscribe(() => console.log(`idle started ${Date.now}`));
+    this.idle.onIdleEnd.subscribe(() => {
+      this.devService.getDevices().subscribe(devices => { this.store.dispatch(new LoadDevices(devices)) });
+      this.updService.connectionStart();
+    });
   }
   ngOnDestroy() {
     this.updService.connectionClose();
