@@ -15,7 +15,6 @@ import { environment } from '../environments/environment';
 import { ActionLogComponent } from './action-log/action-log.component';
 import { BindingComponent } from './binding/binding.component';
 import { BindingDetailsComponent } from './binding-details/binding-details.component'; // Angular CLI environemnt
-import { NgIdleModule  } from '@ng-idle/core'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { NgIdleModule  } from '@ng-idle/core'; // this includes the core NgIdleM
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducer, { metaReducers }),
-    NgIdleModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

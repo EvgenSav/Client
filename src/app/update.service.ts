@@ -4,7 +4,7 @@ import { IDevice } from './models/Device';
 import { IDevicesState } from './store/devices/reducer';
 import { IAppState } from './store/reducer'
 import { Store } from '@ngrx/store';
-import { UpdateDevice, AddDevice } from './store/devices/actions';
+import { UpdateDevice, AddDevice, LoadDevices } from './store/devices/actions';
 import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 import { IBindRequest } from './models/BindRequest';
 import { PatchBindRequest } from './store/binding/actions';
@@ -26,9 +26,10 @@ export class UpdateService {
       }
     }).catch(() => console.log('error'));
     this.connection.on('DeviceUpdated', this.deviceUpdate);
+    this.connection.on('DeviceCollection', this.deviceCollectionUpdate);
     this.connection.on('DeviceAdded', this.deviceAdd);
     this.connection.on('RequestUpdated', this.requestUpdate);
-    
+
     this.connection.onclose(error => {
       console.log(error.name);
       console.log(error.message);
@@ -49,6 +50,9 @@ export class UpdateService {
   }
   deviceUpdate = (dev: IDevice) => {
     this.store.dispatch(new UpdateDevice(dev));
+  }
+  deviceCollectionUpdate = (devs: IDevice[]) => {
+    this.store.dispatch(new LoadDevices(devs));
   }
   deviceAdd = (dev: IDevice) => {
     this.store.dispatch(new AddDevice(dev));
