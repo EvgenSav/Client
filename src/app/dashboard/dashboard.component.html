@@ -1,17 +1,21 @@
 <div *ngIf='(devList$ | async) !== null'>
   <div class='card-columns'>
     <div *ngFor='let dev of devList$ | async' class='card'>
-      <div class="card-body" [style.backgroundColor]="dev.state ? 'lightgreen' : 'default'" (click)='switch(dev.key, $event)'>
+      <div class="card-body" [style.backgroundColor]="dev.state.loadState ? 'lightgreen' : 'default'" (click)='switch(dev.key, $event)'>
         <button [id]="dev.key.toString() +' remove'" [className]="'card-remove'">x</button>
         <h5 class="card-title">{{dev.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">State {{dev.state ? 'on' : 'off'}}</h6>
-        <p class="card-text">{{dev.bright}}</p>
-        <div class="form-group d-inline-flex">
-          <button class="form-control-sm" (click)='setBright(dev.key, dev.bright-10, $event)'>-</button>
-          <input class="form-control-range inline" type="range" [defaultValue]='dev.bright' (change)='setBright(dev.key, $event.target.value, $event)' min="0"
+        <h6 *ngIf='(dev.type === 1 || dev.type === 2)' class="card-subtitle mb-2 text-muted">State {{dev.state.loadState ? 'on' : 'off'}}</h6>
+        <p *ngIf='(dev.type === 1 || dev.type === 2)' class="card-text">{{dev.state.bright}}</p>
+        <p *ngIf="(dev.type === 3 && dev.state.measuredDate != null && dev.state.measuredDate.has('Temperature'))" 
+        class="card-text">Temp: {{dev.state.measuredDate.get('Temperature').toString}} &#8451;C</p>
+        <p *ngIf="(dev.type === 3 && dev.state.measuredDate != null && dev.state.measuredDate.has('Humidity'))" 
+        class="card-text">Humi: {{dev.state.measuredDate.get('Humidity').toString}}  %</p>
+        <div *ngIf='(dev.type === 1 || dev.type === 2)'  class="form-group d-inline-flex">
+          <button class="form-control-sm" (click)='setBright(dev.key, dev.state.bright-10, $event)'>-</button>
+          <input class="form-control-range inline" type="range" [defaultValue]='dev.state.bright' (change)='setBright(dev.key, $event.target.value, $event)' min="0"
             max="100" step="1" />
-          <button class="form-control-sm" (click)='setBright(dev.key, dev.bright+10, $event)'>+</button>
-        </div>
+          <button class="form-control-sm" (click)='setBright(dev.key, dev.state.bright+10, $event)'>+</button>
+        </div>        
         <!-- <button [className]=" dev.state ? 'btn btn-primary' : 'btn btn-outline-primary' "
           (click)='switch(dev.key, $event)'>Switch {{dev.state ? 'off' : 'on'}}</button> -->
         <div><a [routerLink]="['/details', dev.key]">Details</a></div>

@@ -36,7 +36,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="name">Bright</span>
       </div>
-      <input class='form-control' type="text" aria-describedby="bright" [value]="(dev$ | async)?.bright"
+      <input class='form-control' type="text" aria-describedby="bright" [value]="(dev$ | async)?.state.bright"
         (change)='setBright($event.target.value)'>
     </div>
   </div>

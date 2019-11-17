@@ -21,25 +21,17 @@ export class UpdateService {
     this.connection = new HubConnectionBuilder().withUrl('/devicesHub').build();
     this.connection.start().then(() => {
       console.log('started');
-      if (this.tmr) {
-        clearInterval(this.tmr);
-      }
-    }).catch(() => console.log('error'));
+    }).catch(() => console.log('error onStart'));
     this.connection.on('DeviceUpdated', this.deviceUpdate);
     this.connection.on('DeviceCollection', this.deviceCollectionUpdate);
     this.connection.on('DeviceAdded', this.deviceAdd);
     this.connection.on('RequestUpdated', this.requestUpdate);
 
     this.connection.onclose(error => {
-      console.log(error.name);
-      console.log(error.message);
-      console.log(error.stack);
-      this.connectionClose();
       if (error) {
-        /* this.tmr = setInterval(() => {
-          console.log(this.connection.state);
-          this.connectionStart();
-        }, 30000) */
+        console.log(error.name);
+        console.log(error.message);
+        console.log(error.stack);
       }
     });
 
