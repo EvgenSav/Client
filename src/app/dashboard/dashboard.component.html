@@ -6,10 +6,10 @@
         <h5 class="card-title">{{dev.name}}</h5>
         <h6 *ngIf='(dev.type === 1 || dev.type === 2)' class="card-subtitle mb-2 text-muted">State {{dev.state.loadState ? 'on' : 'off'}}</h6>
         <p *ngIf='(dev.type === 1 || dev.type === 2)' class="card-text">{{dev.state.bright}}</p>
-        <p *ngIf="(dev.type === 3 && dev.state.measuredDate != null && dev.state.measuredDate.has('Temperature'))" 
-        class="card-text">Temp: {{dev.state.measuredDate.get('Temperature').toString}} &#8451;C</p>
-        <p *ngIf="(dev.type === 3 && dev.state.measuredDate != null && dev.state.measuredDate.has('Humidity'))" 
-        class="card-text">Humi: {{dev.state.measuredDate.get('Humidity').toString}}  %</p>
+        <p *ngIf="(dev.type === 3 && dev.state.measuredDate != null && dev.state.measuredDate.has('temperature'))" 
+        class="card-text">Temp: {{dev.state.measuredDate.get('temperature').toString}} &#8451;C</p>
+        <p *ngIf="(dev.type === 3 && dev.state.measuredDate != null && dev.state.measuredDate.has('humidity'))" 
+        class="card-text">Humi: {{dev.state.measuredDate.get('humidity').toString}}  %</p>
         <div *ngIf='(dev.type === 1 || dev.type === 2)'  class="form-group d-inline-flex">
           <button class="form-control-sm" (click)='setBright(dev.key, dev.state.bright-10, $event)'>-</button>
           <input class="form-control-range inline" type="range" [defaultValue]='dev.state.bright' (change)='setBright(dev.key, $event.target.value, $event)' min="0"
