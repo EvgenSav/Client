@@ -38,7 +38,7 @@ export class UpdateService {
   }
   requestUpdate = (req: IBindRequest) => {
     console.log(req);
-    this.store.dispatch(new PatchBindRequest(req.id, req))
+    this.store.dispatch(new PatchBindRequest(req.Id, req))
   }
   deviceUpdate = (dev: IDevice) => {
     this.store.dispatch(new UpdateDevice(dev));

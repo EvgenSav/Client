@@ -21,7 +21,7 @@
         <span class="input-group-text" id="room">Room</span>
       </div>
       <select class='form-control' aria-describedby="room" (change)='patchDevice($event.target.value, "/Room")'
-        [value]="(dev$ | async)?.room">
+        [value]="(dev$ | async)?.Room">
         <option *ngFor='let room of rooms$ | async'>{{room}}</option>
       </select>
     </div>
@@ -29,14 +29,14 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="name">Name</span>
       </div>
-      <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(dev$ | async)?.name"
+      <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(dev$ | async)?.Name"
         (change)='patchDevice($event.target.value, "/Name")'>
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="name">Bright</span>
       </div>
-      <input class='form-control' type="text" aria-describedby="bright" [value]="(dev$ | async)?.state.bright"
+      <input class='form-control' type="text" aria-describedby="bright" [value]="(dev$ | async)?.State.Bright"
         (change)='setBright($event.target.value)'>
     </div>
   </div>

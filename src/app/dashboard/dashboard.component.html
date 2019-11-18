@@ -1,24 +1,28 @@
 <div *ngIf='(devList$ | async) !== null'>
   <div class='card-columns'>
     <div *ngFor='let dev of devList$ | async' class='card'>
-      <div class="card-body" [style.backgroundColor]="dev.state.loadState ? 'lightgreen' : 'default'" (click)='switch(dev.key, $event)'>
-        <button [id]="dev.key.toString() +' remove'" [className]="'card-remove'">x</button>
-        <h5 class="card-title">{{dev.name}}</h5>
-        <h6 *ngIf='(dev.type === 1 || dev.type === 2)' class="card-subtitle mb-2 text-muted">State {{dev.state.loadState ? 'on' : 'off'}}</h6>
-        <p *ngIf='(dev.type === 1 || dev.type === 2)' class="card-text">{{dev.state.bright}}</p>
-        <p *ngIf="(dev.type === 3 && dev.state.measuredData != null && dev.state.measuredData.temperature)" 
-        class="card-text">Temp: {{dev.state.measuredData.temperature}} &#8451;</p>
-        <p *ngIf="(dev.type === 3 && dev.state.measuredData != null && dev.state.measuredData.humidity)" 
-        class="card-text">Humi: {{dev.state.measuredData.humidity}} &#37;</p>
-        <div *ngIf='(dev.type === 1 || dev.type === 2)'  class="form-group d-inline-flex">
-          <button class="form-control-sm" (click)='setBright(dev.key, dev.state.bright-10, $event)'>-</button>
-          <input class="form-control-range inline" type="range" [defaultValue]='dev.state.bright' (change)='setBright(dev.key, $event.target.value, $event)' min="0"
-            max="100" step="1" />
-          <button class="form-control-sm" (click)='setBright(dev.key, dev.state.bright+10, $event)'>+</button>
-        </div>        
+      <div class="card-body" [style.backgroundColor]="dev.State.LoadState ? 'lightgreen' : 'default'"
+        (click)='switch(dev.Key, $event)'>
+        <button type="button" class="close card-remove" aria-label="Close" (click)="removeDevice(dev.Key)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="card-title">{{dev.Name}}</h5>
+        <h6 *ngIf='(dev.Type === 1 || dev.Type === 2)' class="card-subtitle mb-2 text-muted">State
+          {{dev.State.LoadState ? 'on' : 'off'}}</h6>
+        <p *ngIf='(dev.Type === 1 || dev.Type === 2)' class="card-text">{{dev.State.Bright}}</p>
+        <p *ngIf="(dev.Type === 3 && dev.State.MeasuredData != null && dev.State.MeasuredData.Temperature)"
+          class="card-text">Temp: {{dev.State.MeasuredData.Temperature}} &#8451;</p>
+        <p *ngIf="(dev.Type === 3 && dev.State.MeasuredData != null && dev.State.MeasuredData.Humidity)"
+          class="card-text">Humi: {{dev.State.MeasuredData.Humidity}} &#37;</p>
+        <div *ngIf='(dev.Type === 1 || dev.Type === 2)' class="form-group d-inline-flex">
+          <button class="form-control-sm" (click)='setBright(dev.Key, dev.State.Bright-10, $event)'>-</button>
+          <input class="form-control-range inline" type="range" [defaultValue]='dev.State.Bright'
+            (change)='setBright(dev.Key, $event.target.value, $event)' min="0" max="100" step="1" />
+          <button class="form-control-sm" (click)='setBright(dev.Key, dev.State.Bright+10, $event)'>+</button>
+        </div>
         <!-- <button [className]=" dev.state ? 'btn btn-primary' : 'btn btn-outline-primary' "
           (click)='switch(dev.key, $event)'>Switch {{dev.state ? 'off' : 'on'}}</button> -->
-        <div><a [routerLink]="['/details', dev.key]">Details</a></div>
+        <div><a [routerLink]="['/details', dev.Key]">Details</a></div>
       </div>
     </div>
   </div>

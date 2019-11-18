@@ -1,11 +1,11 @@
 
 export interface IBindRequest {
-    id?: string,
-    deviceFk?: number;
-    completed?: Date;
-    deviceType: DeviceTypeEnum;
-    name: string;
-    type: number;
+    Id?: string,
+    DeviceFk?: number;
+    Completed?: Date;
+    DeviceType: DeviceTypeEnum;
+    Name: string;
+    Type: number;
 }
 export enum DeviceTypeEnum {
     RemoteController = 0,

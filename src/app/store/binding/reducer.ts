@@ -29,7 +29,7 @@ export const bindingReducer = (state = initialState, action: BindRequestActions)
         }
         case bindingActionTypes.PATCH_BIND_REQUEST: {
             const requests = state.bindRequestList;
-            const updateIndex = requests.findIndex(r => r.id === action.id);
+            const updateIndex = requests.findIndex(r => r.Id === action.id);
             const updatedRequestList = update(requests, { $splice: [[updateIndex, 1, action.payload]] })
             return {
                 ...state, bindRequestList: updatedRequestList

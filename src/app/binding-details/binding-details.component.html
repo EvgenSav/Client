@@ -3,8 +3,8 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="name">Name</span>
     </div>
-    <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(request$ | async)?.name"
-      [disabled]='(request$ | async)?.completed' (change)='patchBindRequest($event.target.value, "/Name")' />
+    <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(request$ | async)?.Name"
+      [disabled]='(request$ | async)?.Completed' (change)='patchBindRequest($event.target.value, "/Name")' />
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -12,17 +12,17 @@
     </div>
     <select class='form-control' aria-describedby="type"
       (change)='patchBindRequest($event.target.value, "/DeviceType")'
-      [disabled]='(request$ | async)?.completed'>
-      <option *ngFor='let option of options$ | async' [value]='option.key'
-        [selected]='option.key == (request$ | async)?.deviceType'>{{option.value}}</option>
+      [disabled]='(request$ | async)?.Completed'>
+      <option *ngFor='let option of options$ | async' [value]='option.Key'
+        [selected]='option.Key == (request$ | async)?.DeviceType'>{{option.Value}}</option>
     </select>
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="completed">Completed</span>
     </div>
-    <input class='form-control' [value]="((request$ | async)?.completed | date: 'short')" disabled="true"/>
+    <input class='form-control' [value]="((request$ | async)?.Completed | date: 'short')" disabled="true"/>
   </div>
-  <button *ngIf='!(request$ | async)?.completed' [disabled]='(request$ | async)?.completed' class='btn btn-primary'
+  <button *ngIf='!(request$ | async)?.Completed' [disabled]='(request$ | async)?.Completed' class='btn btn-primary'
     (click)='executeBindRequest()'>Execute</button>
 </div>

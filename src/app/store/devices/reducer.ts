@@ -23,7 +23,7 @@ export const devicesReducer = (state = initialState, action: DevicesActions): ID
         }
         case actionTypes.UPDATE_DEVICE: {
             const devices = state.devices;
-            const updIdx = devices.findIndex(d => d.key === action.payload.key);
+            const updIdx = devices.findIndex(d => d.Key === action.payload.Key);
             const updatedDevs = update(devices, { $splice: [[updIdx, 1, action.payload]] });
             return {
                 ...state, devices: updatedDevs

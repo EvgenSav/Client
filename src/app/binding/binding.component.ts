@@ -28,10 +28,10 @@ export class BindingComponent implements OnInit {
   }
   addNewBindRequest = () => {
     const model: IBindRequest = {
-      deviceFk: null,
-      name: 'new device',
-      deviceType: DeviceTypeEnum.PowerUnit,
-      type: 0
+      DeviceFk: null,
+      Name: 'new device',
+      DeviceType: DeviceTypeEnum.PowerUnit,
+      Type: 0
     }
     this.bindService.addNewBindRequests(model).subscribe(bindRequest => this.store.dispatch(new AddNewBindRequest(bindRequest)));
   }

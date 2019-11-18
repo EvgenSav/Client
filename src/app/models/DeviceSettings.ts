@@ -1,9 +1,9 @@
 
 export class IDeviceSettings {
-    isSaveState: boolean;
-    isDimmable: boolean;
-    isDefaultOn: boolean;
-    dimCorrLvlHi: number;
-    dimCorrLvlLow: number;
-    onLvl: number;
+    IsSaveState: boolean;
+    IsDimmable: boolean;
+    IsDefaultOn: boolean;
+    DimCorrLvlHi: number;
+    DimCorrLvlLow: number;
+    OnLvl: number;
 }

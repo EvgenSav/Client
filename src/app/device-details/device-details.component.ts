@@ -21,7 +21,7 @@ export class DeviceDetailsComponent implements OnInit {
   rooms$: Observable<string[]>;
   devId: number;
   constructor(private devService: DevicesService, private route: ActivatedRoute, private store: Store<IAppState>) {
-    this.dev$ = this.store.select(getDevices).pipe(map(devs => devs.find(d => d.key === this.devId)));
+    this.dev$ = this.store.select(getDevices).pipe(map(devs => devs.find(d => d.Key === this.devId)));
     this.rooms$ = this.store.select(getRooms);
   }
   patchDevice = (value: string, path: string) => {

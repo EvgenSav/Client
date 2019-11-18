@@ -11,10 +11,10 @@
     </thead>
     <tbody>
       <tr *ngFor='let logItem of actionLog$  | async'>
-        <td>{{logItem.id}}</td>
-        <td>{{logItem.timeStamp | date: 'short'}}</td>
-        <td>{{logItem.deviceFk}}</td>
-        <td>{{logItem.cmd}}</td>
+        <td>{{logItem.Id}}</td>
+        <td>{{logItem.TimeStamp | date: 'short'}}</td>
+        <td>{{logItem.DeviceFk}}</td>
+        <td>{{logItem.Cmd}}</td>
       </tr>
     </tbody>
   </table>

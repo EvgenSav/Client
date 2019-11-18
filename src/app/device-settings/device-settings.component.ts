@@ -24,7 +24,7 @@ export class DeviceSettingsComponent implements OnInit {
   constructor(private devService: DevicesService, private route: ActivatedRoute, private store: Store<IAppState>) {
     this.route.params.subscribe(params => { this.handleChangeRoute() });
     this.settings$ = this.store.select(getDevices).pipe(map(devs => {
-      return devs.length > 0 ? devs.find(dev => dev.key === this.id).settings : null;
+      return devs.length > 0 ? devs.find(dev => dev.Key === this.id).Settings : null;
     }));
     /* this.store.deviceChanged.subscribe(devices => {
       this.settings = devices.find(dev => dev.key === this.id).settings;

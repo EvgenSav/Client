@@ -1,21 +1,18 @@
 @import "~bootstrap/scss/bootstrap-grid.scss";
 .card-columns {
-    @include media-breakpoint-only(lg) {
-      column-count: 5;
-    }
-    @include media-breakpoint-only(xl) {
-      column-count: 8;
-    }
+  @include media-breakpoint-only(lg) {
+    column-count: 5;
   }
-  .card-remove {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    display: none;
+  @include media-breakpoint-only(xl) {
+    column-count: 8;
   }
-  .my-card {
-    background-color: default;
-  }
-  .my-card:hover.card-remove{
-    display: block;
-  }
+}
+.card-remove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: none;
+}
+.card-body:hover .card-remove {
+  display: block !important;
+}

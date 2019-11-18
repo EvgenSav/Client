@@ -10,5 +10,5 @@ export const getBindRequestList = createSelector(
 );
 export const getBindRequest = (id: string) => createSelector(
     bindingState,
-    (state: IBindingState) => state.bindRequestList.find(r => r.id == id)
+    (state: IBindingState) => state.bindRequestList.find(r => r.Id == id)
 );

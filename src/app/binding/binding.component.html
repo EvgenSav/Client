@@ -3,9 +3,9 @@
   <div *ngIf='(bindRequests$ | async) !== null'>
     <div class='bind-container'>
       <div *ngFor='let bindRequest of bindRequests$ | async' class='bind-request'>
-        <div>{{bindRequest?.name}}</div>
-        <div>{{bindRequest.deviceFk}}</div>
-        <a [routerLink]="['details', bindRequest.id]" class="card-link">Details</a>
+        <div>{{bindRequest?.Name}}</div>
+        <div>{{bindRequest.DeviceFk}}</div>
+        <a [routerLink]="['details', bindRequest.Id]" class="card-link">Details</a>
       </div>
     </div>
   </div>

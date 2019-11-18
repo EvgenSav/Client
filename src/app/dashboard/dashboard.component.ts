@@ -14,7 +14,7 @@ import { IAppState } from '../store/reducer';
   styleUrls: ['./dashboard.component.scss']
 })
 
-export class DashboardComponent implements OnInit, OnChanges {
+export class DashboardComponent implements OnInit {
   devList$: Observable<IDevice[]>;
   constructor(private devService: DevicesService, private store: Store<IAppState>) {
     this.devList$ = this.store.select(Devices.getDevices);
@@ -24,7 +24,8 @@ export class DashboardComponent implements OnInit, OnChanges {
       this.store.dispatch(new Actions.LoadDevices(devices));
     });
   }
-  ngOnChanges() {
+  removeDevice = (key: number) => {
+    console.log(key);
   }
   switch = (id: number, e: Event) => {
     e.stopPropagation();
