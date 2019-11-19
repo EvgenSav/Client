@@ -22,7 +22,14 @@ export class ActionLogComponent implements OnInit {
     this.route.params.subscribe(params => this.handleChangeRoute());
   }
   getDeviceActionLog = () => {
-    this.actionLogService.getActionLog(this.devId).subscribe(logItems => this.store.dispatch(new Actions.LoadDeviceLog(this.devId, logItems)));
+    this.actionLogService.getActionLog(this.devId)
+      .subscribe(logItems => this.loadActionLog(logItems));
+  }
+  loadActionLog = (items) => {
+    this.store.dispatch(new Actions.LoadDeviceLog(this.devId, items))
+  }
+  addActionLogItems = (items: IActionLogItem[]) => {
+    this.store.dispatch(new Actions.AddLogItems(this.devId, items))
   }
   ngOnInit() {
     /*  this.getDeviceActionLog(); */
