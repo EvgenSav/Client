@@ -7,6 +7,7 @@
         <th scope="col">Time Stamp</th>
         <th scope="col">Device Id</th>
         <th scope="col">Cmd</th>
+        <th scope="col">Measurements</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,10 @@
         <td>{{logItem.TimeStamp | date: 'short'}}</td>
         <td>{{logItem.DeviceFk}}</td>
         <td>{{logItem.Cmd}}</td>
+        <td *ngIf="(logItem.State != null && logItem.State.MeasuredData != null )"
+          class="card-text">{{logItem.State.MeasuredData.Temperature ? logItem.State.MeasuredData.Temperature + "&#8451;": ''}}
+          {{logItem.State.MeasuredData.Humidity ? ' /Humi: ' + logItem.State.MeasuredData.Humidity + "&#37;": ''}} 
+        </td>
       </tr>
     </tbody>
   </table>

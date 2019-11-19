@@ -1,4 +1,4 @@
-import { IDeviceState } from "./DeviceState";
+import { IDeviceState, IMeasuredData } from "./DeviceState";
 
 export interface IActionLogItem {
     Id: number;
@@ -8,5 +8,4 @@ export interface IActionLogItem {
     DeviceTypeFk: number;
     State: IDeviceState;
     ReceivedBuffer: any;
-    MeasuredData?: number;
 }
