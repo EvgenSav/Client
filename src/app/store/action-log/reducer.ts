@@ -26,19 +26,6 @@ export const actionLogReducer = (state = initialState, action: ActionLogActions)
                 ...state, actionLogMap: updatedActionLogMap
             };
         }
-        /* case actionTypes.UPDATE_DEVICE: {
-            const devices = state.devices;
-            const updIdx = devices.findIndex(d => d.key === action.payload.key);
-            const updatedDevs = update(devices, { $splice: [[updIdx, 1, action.payload]] });
-            return {
-                ...state, devices: updatedDevs
-            }
-        }
-        case actionTypes.SELECT_DEV: {
-            return {
-                ...state, selectedDevKey: action.payload
-            }
-        } */
         default:
             return { ...state };
     }

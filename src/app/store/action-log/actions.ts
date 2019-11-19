@@ -15,4 +15,4 @@ export class AddLogItems implements Action {
     readonly type = actionTypes.ADD_LOG_ITEMS;
     constructor(public devId: number, public payload: IActionLogItem[]) { }
 }
-export type ActionLogActions = LoadDeviceLog | AddLogItems; // | UpdateDevice | SelectDevice;
+export type ActionLogActions = LoadDeviceLog | AddLogItems;

@@ -15,6 +15,8 @@ import { environment } from '../environments/environment';
 import { ActionLogComponent } from './action-log/action-log.component';
 import { BindingComponent } from './binding/binding.component';
 import { BindingDetailsComponent } from './binding-details/binding-details.component'; // Angular CLI environemnt
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalContentComponent } from './modal-content/modal-content.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,11 @@ import { BindingDetailsComponent } from './binding-details/binding-details.compo
     DeviceSettingsComponent,
     ActionLogComponent,
     BindingComponent,
-    BindingDetailsComponent
+    BindingDetailsComponent,
+    ModalContentComponent
   ],
   imports: [
+    ModalModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -37,6 +41,7 @@ import { BindingDetailsComponent } from './binding-details/binding-details.compo
     }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalContentComponent]
 })
 export class AppModule { }
