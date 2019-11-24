@@ -5,8 +5,8 @@
 .bind-request {
   display: flex;
   flex-direction: column;
-  width: 150px;
-  height: 120px;
+  max-width: 200px;
   margin: 5px;
   border: 1px solid green;
+  justify-content: space-between;
 }

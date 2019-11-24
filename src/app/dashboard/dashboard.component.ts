@@ -9,6 +9,8 @@ import * as Actions from '../store/devices/actions';
 import * as Devices from '../store/devices/selectors';
 import { IAppState } from '../store/reducer';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
+import { BindingService } from '../binding.service';
+import { IBindRequest, RequestTypeEnum, DeviceTypeEnum } from '../models/BindRequest';
 
 
 
@@ -24,7 +26,8 @@ import { ModalContentComponent } from '../modal-content/modal-content.component'
 export class DashboardComponent implements OnInit {
   devList$: Observable<IDevice[]>;
   modalRef: BsModalRef;
-  constructor(private devService: DevicesService, private store: Store<IAppState>, private modalService: BsModalService) {
+  constructor(private devService: DevicesService, private store: Store<IAppState>, private modalService: BsModalService,
+    private requestServie: BindingService) {
     this.devList$ = this.store.select(Devices.getDevices);
   }
   ngOnInit() {
@@ -32,18 +35,31 @@ export class DashboardComponent implements OnInit {
       this.store.dispatch(new Actions.LoadDevices(devices));
     });
   }
-  removeDevice = (key: number) => {
+
+  openRemoveConfirm = (device: IDevice, requestId: string) => {
     const initialState = {
+      primaryBtnName: 'Delete',
       list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
+        `Device ${device.Name} will be deleted`
       ],
-      title: 'Modal with component'
+      title: 'Modal with component',
+      onPrimaryClicked: () => this.removeConfirmed(requestId)
     };
-    this.modalRef = this.modalService.show(ModalContentComponent, { initialState});
-    console.log(key);
+    this.modalRef = this.modalService.show(ModalContentComponent, { initialState });
+  }
+
+  removeDevice = (device: IDevice, e: Event) => {
+    e.stopPropagation();
+    const request: IBindRequest = {
+      DeviceType: device.Type,
+      Type: RequestTypeEnum.Unbind,
+      Name: device.Name,
+      MetaData: {
+        Channel: device.Channel,
+        AddressF: device.Type === DeviceTypeEnum.PowerUnitF ? device.Key : null
+      }
+    };
+    this.requestServie.addNewBindRequests(request).subscribe(r => this.openRemoveConfirm(device, r.Id));
   }
   switch = (id: number, e: Event) => {
     e.stopPropagation();
@@ -55,5 +71,8 @@ export class DashboardComponent implements OnInit {
       0 : brightLvl > 100 ?
         100 : brightLvl;
     this.devService.setBright(id, bright).subscribe();
+  }
+  removeConfirmed = (requestId: string) => {
+    this.requestServie.executeBindRequest(requestId).subscribe();
   }
 }

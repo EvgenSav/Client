@@ -3,7 +3,7 @@
     <div *ngFor='let dev of devList$ | async' class='card'>
       <div class="card-body" [style.backgroundColor]="dev.State.LoadState ? 'lightgreen' : 'default'"
         (click)='switch(dev.Key, $event)'>
-        <button type="button" class="close card-remove" aria-label="Close" (click)="removeDevice(dev.Key)">
+        <button type="button" class="close card-remove" aria-label="Close" (click)="removeDevice(dev, $event)">
           <span aria-hidden="true">&times;</span>
         </button>
         <h5 class="card-title">{{dev.Name}}</h5>

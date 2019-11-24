@@ -36,6 +36,14 @@ export const devicesReducer = (state = initialState, action: DevicesActions): ID
                 ...state, devices: updatedDevs
             }
         }
+        case actionTypes.DELETE_DEVICE: {
+            const devices = state.devices;
+            const index = devices.findIndex(r => r.Key === action.payload);
+            const updatedDevs = update(devices, { $splice: [[index, 1]] });
+            return {
+                ...state, devices: updatedDevs
+            }
+        }
         case actionTypes.SELECT_DEV: {
             return {
                 ...state, selectedDevKey: action.payload

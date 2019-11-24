@@ -8,3 +8,7 @@ export const getDevices = createSelector(
     devicesState,
     (state: IDevicesState) => state.devices
 );
+export const getSelectedDeviceKey = createSelector(
+    devicesState,
+    (state: IDevicesState) => state.selectedDevKey
+);

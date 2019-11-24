@@ -4,7 +4,7 @@ import { IDevice } from './models/Device';
 import { IDevicesState } from './store/devices/reducer';
 import { IAppState } from './store/reducer'
 import { Store } from '@ngrx/store';
-import { UpdateDevice, AddDevice, LoadDevices } from './store/devices/actions';
+import * as Actions from './store/devices/actions';
 import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 import { IBindRequest } from './models/BindRequest';
 import { PatchBindRequest } from './store/binding/actions';
@@ -25,6 +25,7 @@ export class UpdateService {
     this.connection.on('DeviceUpdated', this.deviceUpdate);
     this.connection.on('DeviceCollection', this.deviceCollectionUpdate);
     this.connection.on('DeviceAdded', this.deviceAdd);
+    this.connection.on('DeviceDeleted', this.deviceDelete);
     this.connection.on('RequestUpdated', this.requestUpdate);
 
     this.connection.onclose(error => {
@@ -41,13 +42,16 @@ export class UpdateService {
     this.store.dispatch(new PatchBindRequest(req.Id, req))
   }
   deviceUpdate = (dev: IDevice) => {
-    this.store.dispatch(new UpdateDevice(dev));
+    this.store.dispatch(new Actions.UpdateDevice(dev));
   }
   deviceCollectionUpdate = (devs: IDevice[]) => {
-    this.store.dispatch(new LoadDevices(devs));
+    this.store.dispatch(new Actions.LoadDevices(devs));
   }
   deviceAdd = (dev: IDevice) => {
-    this.store.dispatch(new AddDevice(dev));
+    this.store.dispatch(new Actions.AddDevice(dev));
+  }
+  deviceDelete = (devKey: number) => {
+    this.store.dispatch(new Actions.DeleteDevice(devKey))
   }
   connectionClose = () => {
     this.connection.stop().then(() => console.log('stop'));

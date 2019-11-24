@@ -8,12 +8,18 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ModalContentComponent implements OnInit {
   title: string;
-  closeBtnName: string;
-  list: any[] = [];
- 
-  constructor(public bsModalRef: BsModalRef) {}
- 
+  closeBtnName: string = 'Close';
+  primaryBtnName?: string;
+  list: any[] = [];  
+  onPrimaryClicked?: () => void;
+  onPrimaryClick = () => {
+    if(this.onPrimaryClicked != null) {
+      this.onPrimaryClicked();
+    }
+    this.bsModalRef.hide(); 
+  }
+  constructor(public bsModalRef: BsModalRef) {} 
   ngOnInit() {
-    this.list.push('PROFIT!!!');
+
   }
 }
