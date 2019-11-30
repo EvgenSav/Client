@@ -1,0 +1,28 @@
+<button type="button" class="btn btn-outline-success" (click)='[addNewBindRequest()]'>Add New</button>
+<div *ngIf='(requests$ | async) !== null'>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Step</th>
+        <th scope="col">Device Name</th>
+        <th scope="col">Device Type</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let request of requests$  | async'>
+        <td>{{requestTypeOptions[request.Type]}}</td>
+        <td>{{requestStepOptions[request.Step]}}</td>
+        <td>{{request.Name}}</td>
+        <td>{{deviceTypeOptions[request.DeviceType]}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-success btn-sm" (click)='executeRequest(request.Id)'>Execute</button>
+            <button class="btn btn-danger btn-sm" (click)='deleteRequest(request.Id)'>Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

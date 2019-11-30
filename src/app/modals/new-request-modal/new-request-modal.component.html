@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closeBtnClick()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="type">Request Type</span>
+      </div>
+      <select class='form-control' aria-describedby="type"
+        (change)='patchBindRequest($event.target.value, "Type")' [disabled]='request.Completed'>
+        <option *ngFor="let option of requestTypeOptions" [value]='option.Key'
+          [selected]='option.Key == request.Type'>{{option.Value}}</option>
+      </select>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name">Device Name</span>
+      </div>
+      <input class='form-control' type="text" aria-describedby="name" [defaultValue]="request.Name"
+        [disabled]='request.Completed' (change)='patchBindRequest($event.target.value, "Name")' />
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="type">Device Type</span>
+      </div>
+      <select class='form-control' aria-describedby="type"
+        (change)='patchBindRequest($event.target.value, "DeviceType")' [disabled]='request.Completed'>
+        <option *ngFor="let option of deviceTypeOptions" [value]='option.Key'
+          [selected]='option.Key == request.DeviceType'>{{option.Value}}</option>
+      </select>
+    </div>
+    <!-- <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="completed">Completed</span>
+        </div>
+        <input class='form-control' [value]="((request$ | async)?.Completed | date: 'short')" disabled="true"/>
+      </div>
+      <button *ngIf='!(request$ | async)?.Completed' [disabled]='(request$ | async)?.Completed' class='btn btn-primary'
+        (click)='executeBindRequest()'>Execute</button> -->
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="createBtnClick()" [disabled]='!request.Name.length'>Create</button>
+  <button type="button" class="btn btn-default" (click)="closeBtnClick()">Close</button>
+</div>

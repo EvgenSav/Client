@@ -6,8 +6,8 @@ import { IAppState } from './store/reducer'
 import { Store } from '@ngrx/store';
 import * as Actions from './store/devices/actions';
 import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
-import { IBindRequest } from './models/BindRequest';
-import { PatchBindRequest } from './store/binding/actions';
+import { IRequest } from './models/Request';
+import { PatchRequest, DeleteRequest, AddRequest } from './store/request/actions';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +22,14 @@ export class UpdateService {
     this.connection.start().then(() => {
       console.log('started');
     }).catch(() => console.log('error onStart'));
-    this.connection.on('DeviceUpdated', this.deviceUpdate);
+
+    this.connection.on('DeviceUpdate', this.deviceUpdate);
     this.connection.on('DeviceCollection', this.deviceCollectionUpdate);
-    this.connection.on('DeviceAdded', this.deviceAdd);
-    this.connection.on('DeviceDeleted', this.deviceDelete);
-    this.connection.on('RequestUpdated', this.requestUpdate);
+    this.connection.on('DeviceAdd', this.deviceAdd);
+    this.connection.on('DeviceDelete', this.deviceDelete);
+    this.connection.on('RequestAdd', this.requestAdd)
+    this.connection.on('RequestUpdate', this.requestUpdate);
+    this.connection.on('RequestDelete', this.requestDelete);
 
     this.connection.onclose(error => {
       if (error) {
@@ -37,9 +40,14 @@ export class UpdateService {
     });
 
   }
-  requestUpdate = (req: IBindRequest) => {
-    console.log(req);
-    this.store.dispatch(new PatchBindRequest(req.Id, req))
+  requestAdd = (request: IRequest) => {
+    this.store.dispatch(new AddRequest(request))
+  }
+  requestUpdate = (req: IRequest) => {
+    this.store.dispatch(new PatchRequest(req.Id, req))
+  }
+  requestDelete = (requestId: string) => {
+    this.store.dispatch(new DeleteRequest(requestId))
   }
   deviceUpdate = (dev: IDevice) => {
     this.store.dispatch(new Actions.UpdateDevice(dev));

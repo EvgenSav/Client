@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { IBindRequest } from "../../models/BindRequest";
+import { IRequest } from "../../models/Request";
 
 export enum optionsActionTypes {
     LOAD_GENERAL_OPTIONS = '[OPTIONS] LOAD_GENERAL_OPTIONS',

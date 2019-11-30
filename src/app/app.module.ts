@@ -13,10 +13,10 @@ import { reducer, metaReducers } from './store/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ActionLogComponent } from './action-log/action-log.component';
-import { BindingComponent } from './binding/binding.component';
-import { BindingDetailsComponent } from './binding-details/binding-details.component'; // Angular CLI environemnt
+import { RequestComponent } from './request/request.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ModalContentComponent } from './modal-content/modal-content.component';
+import { DeleteDeviceConfirmationComponent } from './modals/delete-device-modal/modal-content.component';
+import { NewRequestModalComponent } from './modals/new-request-modal/new-request-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,9 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
     DeviceDetailsComponent,
     DeviceSettingsComponent,
     ActionLogComponent,
-    BindingComponent,
-    BindingDetailsComponent,
-    ModalContentComponent
+    RequestComponent,
+    DeleteDeviceConfirmationComponent,
+    NewRequestModalComponent
   ],
   imports: [
     ModalModule.forRoot(),
@@ -42,6 +42,6 @@ import { ModalContentComponent } from './modal-content/modal-content.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ModalContentComponent]
+  entryComponents: [DeleteDeviceConfirmationComponent, NewRequestModalComponent]
 })
 export class AppModule { }

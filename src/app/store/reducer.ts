@@ -7,14 +7,14 @@ import { IDevicesState } from './devices/reducer';
 import { devicesReducer } from './devices/reducer';
 import { IHomeState, homeReducer } from './home/reducer';
 import { IActionLogState, actionLogReducer } from './action-log/reducer';
-import { bindingReducer, IBindingState } from './binding/reducer';
+import { requestReducer, IRequestState } from './request/reducer';
 import { IOptionsState, optionsReducer } from './options/reducer';
 
 export interface IAppState {
     devices: IDevicesState;
     actionLog: IActionLogState;
     home: IHomeState;
-    bindRequest: IBindingState,
+    request: IRequestState,
     options: IOptionsState
 }
 
@@ -22,7 +22,7 @@ export const reducer: ActionReducerMap<IAppState, any> = {
     devices: devicesReducer,
     actionLog: actionLogReducer,
     home: homeReducer,
-    bindRequest: bindingReducer,
+    request: requestReducer,
     options: optionsReducer
 };
 export function logger(reducer: ActionReducer<IAppState>):

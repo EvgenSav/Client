@@ -1,6 +1,6 @@
 import { IDeviceSettings } from "./DeviceSettings";
 import { IDeviceState } from './DeviceState';
-import { DeviceTypeEnum } from './BindRequest';
+import { DeviceTypeEnum } from './Request';
 
 export interface IDevice {
     State: IDeviceState;

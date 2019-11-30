@@ -4,17 +4,23 @@ export interface IRequestMetaData {
     AddressF?: number;
 }
 
-export interface IBindRequest {
+export interface IRequest {
     Id?: string,
     DeviceFk?: number;
     Completed?: Date;
     DeviceType: DeviceTypeEnum;
     Name: string;
     Type: RequestTypeEnum;
+    Step?: RequestStepEnum;
     MetaData?: IRequestMetaData;
 }
 
-
+export enum RequestStepEnum {
+    Created,
+    Pending,
+    Completed,
+    Error
+}
 
 export enum RequestTypeEnum {
     Bind = 0,

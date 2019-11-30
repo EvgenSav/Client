@@ -18,7 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'Client';
   constructor(private updService: UpdateService, private homeService: HomeService,
     private optionsService: OptionsService, private store: Store<IAppState>) {
-
   }
   ngOnInit() {
     this.homeService.getRooms().subscribe(rooms => { this.store.dispatch(new LoadRooms(rooms)) });

@@ -20,13 +20,13 @@
     <label for="dimmerLow">Dimmer correction, Low lvl</label>
     <input class="form-control" type="number" [value]='(settings$ | async)?.DimCorrLvlLow'
       (change)='handlePatchSetting($event.target.value, "/DimCorrLvlLow")' id='dimmerLow'
-      [disabled]='!(settings$ | async)?.isDimmable' />
+      [disabled]='!(settings$ | async)?.IsDimmable' />
   </div>
   <div class="form-group">
     <label for="dimmerHi">Dimmer correction, Hi lvl</label>
     <input class="form-control" type="number" [value]='(settings$ | async)?.DimCorrLvlHi'
       (change)='handlePatchSetting($event.target.value, "/DimCorrLvlHi")' id='dimmerHi'
-      [disabled]='!(settings$ | async)?.isDimmable' />
+      [disabled]='!(settings$ | async)?.IsDimmable' />
   </div>
   <div class="form-group">
     <label for="onLvl">On lvl</label>

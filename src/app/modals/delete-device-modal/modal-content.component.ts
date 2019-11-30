@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-modal-content',
   templateUrl: './modal-content.component.html',
   styleUrls: ['./modal-content.component.scss']
 })
-export class ModalContentComponent implements OnInit {
+
+export class DeleteDeviceConfirmationComponent implements OnInit {
   title: string;
   closeBtnName: string = 'Close';
   primaryBtnName?: string;
