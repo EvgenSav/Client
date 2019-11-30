@@ -9,6 +9,7 @@ import { getRequestList as getRequestList } from '../store/request/selectors';
 import { getRooms } from '../store/home/selectors';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { NewRequestModalComponent } from '../modals/new-request-modal/new-request-modal.component';
+import { WindowService } from '../window.service';
 
 @Component({
   selector: 'app-binding',
@@ -18,6 +19,8 @@ import { NewRequestModalComponent } from '../modals/new-request-modal/new-reques
 export class RequestComponent implements OnInit {
   requests$: Observable<IRequest[]>;
   rooms$: Observable<string[]>;
+  screenWidth: number;
+
   requestStepOptions: any[] = Object.keys(RequestStepEnum)
     .filter(r => isNaN(parseInt(r)))
   requestTypeOptions: any[] = Object.keys(RequestTypeEnum)
@@ -25,7 +28,7 @@ export class RequestComponent implements OnInit {
   deviceTypeOptions: any[] = Object.keys(DeviceTypeEnum)
     .filter(r => isNaN(parseInt(r)))
 
-  constructor(private requestService: RequestService, private store: Store<IAppState>, private modalService: BsModalService) {
+  constructor(private requestService: RequestService, private store: Store<IAppState>, private modalService: BsModalService, private windowService: WindowService) {
     this.requests$ = this.store.select(getRequestList);
     this.rooms$ = this.store.select(getRooms);
   }
@@ -47,6 +50,7 @@ export class RequestComponent implements OnInit {
   }
   ngOnInit() {
     this.getBindRequests();
+    this.screenWidth = this.windowService.getWindowRef().innerWidth;
   }
 
 }
