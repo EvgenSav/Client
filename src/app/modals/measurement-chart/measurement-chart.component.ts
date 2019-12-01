@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartConfig } from 'src/app/chart-config';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { IChartDataSet } from 'src/app/models/ChartDataPoint';
 

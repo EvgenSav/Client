@@ -13,7 +13,6 @@ import { RequestService } from '../request.service';
 import { IRequest, RequestTypeEnum, DeviceTypeEnum, RequestStepEnum } from '../models/Request';
 import { LineChartComponent } from '../line-chart/line-chart.component';
 import { MeasurementChartComponent } from '../modals/measurement-chart/measurement-chart.component';
-import { ChartConfig } from '../chart-config';
 import { ActionLogService } from '../action-log.service';
 import { IChartDataSet, IChartLine } from 'src/app/models/ChartDataPoint';
 

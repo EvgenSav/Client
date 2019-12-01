@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Chart } from 'chart.js';
-import { ChartConfig } from '../chart-config';
 import { IChartDataSet } from '../models/ChartDataPoint';
 
 @Component({
