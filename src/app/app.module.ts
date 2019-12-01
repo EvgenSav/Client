@@ -17,6 +17,8 @@ import { RequestComponent } from './request/request.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DeleteDeviceConfirmationComponent } from './modals/delete-device-modal/modal-content.component';
 import { NewRequestModalComponent } from './modals/new-request-modal/new-request-modal.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { MeasurementChartComponent } from './modals/measurement-chart/measurement-chart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NewRequestModalComponent } from './modals/new-request-modal/new-request
     ActionLogComponent,
     RequestComponent,
     DeleteDeviceConfirmationComponent,
-    NewRequestModalComponent
+    NewRequestModalComponent,
+    LineChartComponent,
+    MeasurementChartComponent
   ],
   imports: [
     ModalModule.forRoot(),
@@ -42,6 +46,6 @@ import { NewRequestModalComponent } from './modals/new-request-modal/new-request
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DeleteDeviceConfirmationComponent, NewRequestModalComponent]
+  entryComponents: [DeleteDeviceConfirmationComponent, NewRequestModalComponent, MeasurementChartComponent]
 })
 export class AppModule { }

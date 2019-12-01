@@ -5,6 +5,7 @@ import { DeviceDetailsComponent } from './device-details/device-details.componen
 import { DeviceSettingsComponent } from './device-settings/device-settings.component';
 import { ActionLogComponent } from './action-log/action-log.component';
 import { RequestComponent } from './request/request.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
     component: DeviceDetailsComponent,
     children: [
       { path: 'settings/:type', component: DeviceSettingsComponent },
-      { path: 'actionLog', component: ActionLogComponent }
+      { path: 'actionLog', component: ActionLogComponent },
+      { path: 'chart', component: LineChartComponent }
     ]
   },
   {

@@ -2,7 +2,7 @@
   <div class='card-columns'>
     <div *ngFor='let dev of devList$ | async' class='card'>
       <div class="card-body" [style.backgroundColor]="dev.State.LoadState ? 'lightgreen' : 'default'"
-        (click)='switch(dev.Key, $event)'>
+        (click)='deviceCardClick(dev, $event)'>
         <button type="button" class="close card-remove" aria-label="Close" (click)="removeDevice(dev, $event)">
           <span aria-hidden="true">&times;</span>
         </button>

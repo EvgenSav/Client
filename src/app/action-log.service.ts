@@ -6,5 +6,6 @@ import { IActionLogItem } from './models/ActionLogItem';
 })
 export class ActionLogService {
   constructor(private http: HttpClient) { }
-  getActionLog = (devId: number) => this.http.get<IActionLogItem[]>(`api/ActionLog/${devId}`);    
+  getActionLog = (devId: number) => this.http.get<IActionLogItem[]>(`api/ActionLog/${devId}`);
+  getActionLogByDate = (devId: number, date: string) => this.http.get<IActionLogItem[]>(`api/ActionLog/${devId}/From${date ? '/' + date : ''}`);
 }

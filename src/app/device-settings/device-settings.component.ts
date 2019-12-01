@@ -7,8 +7,6 @@ import { filter, find, map } from 'rxjs/operators'
 import { IAppState } from '../store/reducer';
 import { getDevices } from '../store/devices/selectors';
 import { Observable } from 'rxjs';
-import { settings } from 'cluster';
-import { IDevice } from '../models/Device';
 import { Patch } from '../patch-helper';
 
 @Component({
