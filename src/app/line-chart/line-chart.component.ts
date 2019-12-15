@@ -8,14 +8,21 @@ import { IChartDataSet } from '../models/ChartDataPoint';
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit {
-  LineChart: Chart;
+  chart: Chart;
   @Input('data')
   chartData: IChartDataSet;
+  chartNode: HTMLCanvasElement;
   constructor() { }
-
+  update = () => {
+    this.chart.data = {
+      labels: this.chartData.xAxis,
+      datasets: this.chartData.ChartLines
+    };
+    this.chart.update();
+  }
   ngOnInit() {
-    const chartNode = document.getElementById('myChart') as HTMLCanvasElement;
-    this.LineChart = new Chart(chartNode, {
+    this.chartNode = document.getElementById('myChart') as HTMLCanvasElement;
+    this.chart = new Chart(this.chartNode, {
       type: 'line',
       data: {
         labels: this.chartData.xAxis,

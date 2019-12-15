@@ -19,6 +19,9 @@ import { DeleteDeviceConfirmationComponent } from './modals/delete-device-modal/
 import { NewRequestModalComponent } from './modals/new-request-modal/new-request-modal.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { MeasurementChartComponent } from './modals/measurement-chart/measurement-chart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// RECOMMENDED
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { MeasurementChartComponent } from './modals/measurement-chart/measuremen
   ],
   imports: [
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
