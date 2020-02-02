@@ -7,7 +7,7 @@
       <li class='nav-item' *ngIf='(dev.Type === 2)'>
         <a class='nav-link' routerLink='settings/{{17}}' [routerLinkActive]="['active']">Dimmer settings</a>
       </li>
-      <li class='nav-item'  *ngIf='(dev.Type === 2)'>
+      <li class='nav-item' *ngIf='(dev.Type === 2)'>
         <a class='nav-link' routerLink='settings/{{18}}' [routerLinkActive]="['active']">On settings</a>
       </li>
       <li class='nav-item'>
@@ -40,17 +40,15 @@
       <div *ngIf='(dev.Type === 1 || dev.Type === 2)' class="input-group mb-3">
         <label for="formControlRange">Brght:&nbsp;{{dev.State.Bright}}</label>
         <input type="range" class="form-control-range" id="formControlRange" [defaultValue]='dev.State.Bright' min="0"
-          max="100" step="1">
+          max="100" step="1" (change)='setBright($event.target.value)'>
       </div>
     </div>
     <div *ngIf='(dev.Type === 1 || dev.Type === 2)' class='form-row mb-3'>
       <div class="col">
-        <button class="form-control btn btn-outline-dark"
-          (click)='setBright(dev.Key, dev.State.Bright-10, $event)'>-</button>
+        <button class="form-control btn btn-outline-dark" (click)='setBright(dev.State.Bright-10)'>-</button>
       </div>
       <div class="col">
-        <button class="form-control btn btn-outline-dark"
-          (click)='setBright(dev.Key, dev.State.Bright+10, $event)'>+</button>
+        <button class="form-control btn btn-outline-dark" (click)='setBright(dev.State.Bright+10)'>+</button>
       </div>
     </div>
     <div class='form-row'>
