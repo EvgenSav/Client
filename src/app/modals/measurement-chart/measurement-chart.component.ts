@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { IChartDataSet, IChartLine } from 'src/app/models/ChartDataPoint';
-import { Event } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IActionLogItem } from 'src/app/models/ActionLogItem';
 import { LineChartComponent } from 'src/app/line-chart/line-chart.component';
@@ -51,8 +50,9 @@ export class MeasurementChartComponent implements OnInit {
       this.chart.update();
     });
   }
-  inputClick = (evt) => {
+  inputClick = (evt: Event) => {
     evt.preventDefault();
+    evt.stopPropagation();
   }
   constructor(public modalRef: BsModalRef, ) { }
   ngOnInit() {

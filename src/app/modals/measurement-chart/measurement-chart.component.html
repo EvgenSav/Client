@@ -1,11 +1,10 @@
-<div class="modal-header">
-    <h5 class="modal-title pull-left">
+<div class="modal-header chart-modal-header">
+    <div>
         <i *ngIf="measureKeys.includes('Temperature')" class="fas fa-thermometer-quarter"></i>
         <i *ngIf="measureKeys.includes('Humidity')" class="fas fa-tint"></i>
-    </h5>
+    </div>
     <input type="text" placeholder="Datepicker" class="form-control" [(bsValue)]='date' (click)='inputClick($event)'
-        (bsValueChange)="dateChangeHandler($event)" [bsConfig]="{ isAnimated: true }" bsDatepicker
-        style="max-width: 125px;">
+        (bsValueChange)="dateChangeHandler($event)" [bsConfig]="{ isAnimated: true }" bsDatepicker readonly>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
