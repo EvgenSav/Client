@@ -2,8 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { DevicesService } from '../devices.service';
 import { Observable } from 'rxjs';
 import { IDevice } from '../models/Device';
-import { Store, select } from '@ngrx/store';
-import { IDevicesState } from '../store/devices/reducer';
+import { Store } from '@ngrx/store';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import * as Actions from '../store/devices/actions';
 import * as Devices from '../store/devices/selectors';
@@ -28,6 +27,8 @@ import { ActionLogService } from '../action-log.service';
 export class DashboardComponent implements OnInit {
   devList$: Observable<IDevice[]>;
   modalRef: BsModalRef;
+  deviceTypeOptions: any[] = Object.keys(DeviceTypeEnum)
+    .filter(r => isNaN(parseInt(r)))
   constructor(private devService: DevicesService, private store: Store<IAppState>, private modalService: BsModalService,
     private requestServie: RequestService, private actionLogService: ActionLogService) {
     this.devList$ = this.store.select(Devices.getDevices);
@@ -49,7 +50,7 @@ export class DashboardComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(DeleteDeviceConfirmationComponent, { initialState });
   }
-
+  screenWidth = 360;
   removeDevice = (device: IDevice, e: Event) => {
     e.stopPropagation();
     const request: IRequest = {

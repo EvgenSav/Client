@@ -1,5 +1,39 @@
 <div *ngIf='(devList$ | async) !== null'>
-  <div class='card-columns'>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">State</th>
+        <th *ngIf="screenWidth > 360" scope="col">Device Type</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let dev of devList$ | async' [style.backgroundColor]="dev.State.LoadState ? 'lightgreen' : 'default'">
+        <td><i [class]="dev.State.LoadState ? 'fas fa-lightbulb' : 'far fa-lightbulb'"
+            *ngIf='(dev.Type === 1 || dev.Type === 2)'></i>{{dev.Name}}</td>
+        <td>
+          <p *ngIf='(dev.Type === 1 || dev.Type === 2)' class="card-text">{{dev.State.Bright}} &#37;</p>
+          <p *ngIf='dev.Type === 3'>
+            <span *ngIf="(dev.State.MeasuredData != null && dev.State.MeasuredData.Temperature)"
+              class="card-text">{{dev.State.MeasuredData.Temperature}} &#8451;</span>
+            <span *ngIf="(dev.State.MeasuredData != null && dev.State.MeasuredData.Humidity)"
+              class="card-text">{{dev.State.MeasuredData.Humidity}} &#37;</span>
+          </p>
+        </td>
+        <td *ngIf="screenWidth > 360">{{deviceTypeOptions[dev.Type]}}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-success btn-sm" (click)='deviceCardClick(dev, $event)'>Switch</button>
+            <button class="btn btn-outline-dark btn-sm">
+              <span class="fas fa-cog" [routerLink]="['/details', dev.Key]"></span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <div class='card-columns'>
     <div *ngFor='let dev of devList$ | async' class='card'>
       <div class="card-body" [style.backgroundColor]="dev.State.LoadState ? 'lightgreen' : 'default'"
         (click)='deviceCardClick(dev, $event)'>
@@ -20,10 +54,8 @@
             (change)='setBright(dev.Key, $event.target.value, $event)' min="0" max="100" step="1" />
           <button class="form-control-sm" (click)='setBright(dev.Key, dev.State.Bright+10, $event)'>+</button>
         </div>
-        <!-- <button [className]=" dev.state ? 'btn btn-primary' : 'btn btn-outline-primary' "
-          (click)='switch(dev.key, $event)'>Switch {{dev.state ? 'off' : 'on'}}</button> -->
         <div><a [routerLink]="['/details', dev.Key]">Details</a></div>
       </div>
     </div>
-  </div>  
+  </div> -->
 </div>

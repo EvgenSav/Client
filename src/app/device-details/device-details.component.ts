@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DevicesService } from '../devices.service';
-import { Location } from '@angular/common';
 import { IDevice } from '../models/Device';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
