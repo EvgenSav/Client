@@ -10,23 +10,30 @@
     </thead>
     <tbody>
       <tr *ngFor='let dev of devList$ | async' [style.backgroundColor]="dev.State.LoadState ? 'lightgreen' : 'default'">
-        <td><i [class]="dev.State.LoadState ? 'fas fa-lightbulb' : 'far fa-lightbulb'"
-            *ngIf='(dev.Type === 1 || dev.Type === 2)'></i>{{dev.Name}}</td>
         <td>
-          <p *ngIf='(dev.Type === 1 || dev.Type === 2)' class="card-text">{{dev.State.Bright}} &#37;</p>
-          <p *ngIf='dev.Type === 3'>
-            <span *ngIf="(dev.State.MeasuredData != null && dev.State.MeasuredData.Temperature)"
-              class="card-text">{{dev.State.MeasuredData.Temperature}} &#8451;</span>
-            <span *ngIf="(dev.State.MeasuredData != null && dev.State.MeasuredData.Humidity)"
-              class="card-text">{{dev.State.MeasuredData.Humidity}} &#37;</span>
-          </p>
+          <i *ngIf='(!dev.Type)' class="fas fa-toggle-on"></i>
+          <span [class]="dev.State.LoadState ? 'fas fa-lightbulb' : 'far fa-lightbulb'"
+            *ngIf='(dev.Type === 1 || dev.Type === 2)'></span>
+          <i *ngIf='(dev.Type === 3 && dev.State.MeasuredData)' class="fas fa-thermometer-quarter"></i>
+          <span>&nbsp;{{dev.Name}}</span>
         </td>
-        <td *ngIf="screenWidth > 360">{{deviceTypeOptions[dev.Type]}}</td>
+        <td>
+          <span *ngIf='(dev.Type === 1 || dev.Type === 2)' class="card-text">{{dev.State.Bright}} &#37;</span>
+          <span *ngIf='(dev.Type === 3 && dev.State.MeasuredData != null)'>
+            <span *ngIf='(dev.State.MeasuredData.Temperature)'
+              class="card-text">{{dev.State.MeasuredData.Temperature}}&#8451;</span>
+            <span *ngIf='(dev.State.MeasuredData.Temperature && dev.State.MeasuredData.Humidity)' class="card-text">
+              &nbsp;/&nbsp;</span>
+            <span *ngIf='(dev.State.MeasuredData.Humidity)'
+              class="card-text">{{dev.State.MeasuredData.Humidity}}&#37;</span>
+          </span>
+        </td>
+        <td *ngIf='screenWidth > 360'>{{deviceTypeOptions[dev.Type]}}</td>
         <td>
           <div class="btn-group">
             <button class="btn btn-success btn-sm" (click)='deviceCardClick(dev, $event)'>Switch</button>
-            <button class="btn btn-outline-dark btn-sm">
-              <span class="fas fa-cog" [routerLink]="['/details', dev.Key]"></span>
+            <button class="btn btn-outline-dark btn-sm" [routerLink]="['/details', dev.Key]">
+              <span class="fas fa-cog"></span>
             </button>
           </div>
         </td>
@@ -39,21 +46,7 @@
         (click)='deviceCardClick(dev, $event)'>
         <button type="button" class="close card-remove" aria-label="Close" (click)="removeDevice(dev, $event)">
           <span aria-hidden="true">&times;</span>
-        </button>
-        <h5 class="card-title">{{dev.Name}}</h5>
-        <h6 *ngIf='(dev.Type === 1 || dev.Type === 2)' class="card-subtitle mb-2 text-muted">State
-          {{dev.State.LoadState ? 'on' : 'off'}}</h6>
-        <p *ngIf='(dev.Type === 1 || dev.Type === 2)' class="card-text">{{dev.State.Bright}}</p>
-        <p *ngIf="(dev.Type === 3 && dev.State.MeasuredData != null && dev.State.MeasuredData.Temperature)"
-          class="card-text">Temp: {{dev.State.MeasuredData.Temperature}} &#8451;</p>
-        <p *ngIf="(dev.Type === 3 && dev.State.MeasuredData != null && dev.State.MeasuredData.Humidity)"
-          class="card-text">Humi: {{dev.State.MeasuredData.Humidity}} &#37;</p>
-        <div *ngIf='(dev.Type === 1 || dev.Type === 2)' class="form-group d-inline-flex">
-          <button class="form-control-sm" (click)='setBright(dev.Key, dev.State.Bright-10, $event)'>-</button>
-          <input class="form-control-range inline" type="range" [defaultValue]='dev.State.Bright'
-            (change)='setBright(dev.Key, $event.target.value, $event)' min="0" max="100" step="1" />
-          <button class="form-control-sm" (click)='setBright(dev.Key, dev.State.Bright+10, $event)'>+</button>
-        </div>
+        </button>        
         <div><a [routerLink]="['/details', dev.Key]">Details</a></div>
       </div>
     </div>

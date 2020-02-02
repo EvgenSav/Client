@@ -1,13 +1,13 @@
-<div>
+<div *ngIf='dev$ | async; let dev'>
   <div>
     <ul class="nav nav-pills">
-      <li class='nav-item'>
+      <li class='nav-item' *ngIf='(dev.Type === 2)'>
         <a class='nav-link' routerLink='settings/{{16}}' [routerLinkActive]="['active']">Base settings</a>
       </li>
-      <li class='nav-item'>
+      <li class='nav-item' *ngIf='(dev.Type === 2)'>
         <a class='nav-link' routerLink='settings/{{17}}' [routerLinkActive]="['active']">Dimmer settings</a>
       </li>
-      <li class='nav-item'>
+      <li class='nav-item'  *ngIf='(dev.Type === 2)'>
         <a class='nav-link' routerLink='settings/{{18}}' [routerLinkActive]="['active']">On settings</a>
       </li>
       <li class='nav-item'>
@@ -15,29 +15,48 @@
       </li>
     </ul>
   </div>
-  <div style="width: 25%; margin-left: auto; margin-right: auto">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="room">Room</span>
+  <div>
+    <div class='form-row'>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="room">Room</span>
+        </div>
+        <select class='form-control' aria-describedby="room" (change)='patchDevice($event.target.value, "/Room")'
+          [value]='dev.Room'>
+          <option *ngFor="let room of rooms$ | async">{{room}}</option>
+        </select>
       </div>
-      <select class='form-control' aria-describedby="room" (change)='patchDevice($event.target.value, "/Room")'
-        [value]="(dev$ | async)?.Room">
-        <option *ngFor='let room of rooms$ | async'>{{room}}</option>
-      </select>
     </div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="name">Name</span>
+    <div class='form-row'>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="name">Name</span>
+        </div>
+        <input class='form-control' type="text" aria-describedby="name" [defaultValue]='dev.Name'
+          (change)='patchDevice($event.target.value, "/Name")'>
       </div>
-      <input class='form-control' type="text" aria-describedby="name" [defaultValue]="(dev$ | async)?.Name"
-        (change)='patchDevice($event.target.value, "/Name")'>
     </div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="name">Bright</span>
+    <div class='form-row'>
+      <div *ngIf='(dev.Type === 1 || dev.Type === 2)' class="input-group mb-3">
+        <label for="formControlRange">Brght:&nbsp;{{dev.State.Bright}}</label>
+        <input type="range" class="form-control-range" id="formControlRange" [defaultValue]='dev.State.Bright' min="0"
+          max="100" step="1">
       </div>
-      <input class='form-control' type="text" aria-describedby="bright" [value]="(dev$ | async)?.State.Bright"
-        (change)='setBright($event.target.value)'>
+    </div>
+    <div *ngIf='(dev.Type === 1 || dev.Type === 2)' class='form-row mb-3'>
+      <div class="col">
+        <button class="form-control btn btn-outline-dark"
+          (click)='setBright(dev.Key, dev.State.Bright-10, $event)'>-</button>
+      </div>
+      <div class="col">
+        <button class="form-control btn btn-outline-dark"
+          (click)='setBright(dev.Key, dev.State.Bright+10, $event)'>+</button>
+      </div>
+    </div>
+    <div class='form-row'>
+      <div class="input-group mb-3">
+        <button class="btn btn-danger" (click)='removeDevice(dev, $event)'>Delete</button>
+      </div>
     </div>
   </div>
   <router-outlet></router-outlet>
