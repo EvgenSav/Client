@@ -16,3 +16,12 @@
 .card-body:hover .card-remove {
   display: block !important;
 }
+.dashboard-action {
+  width: 75px;
+}
+.dashboard-action button:nth-child(1) {
+  min-width: 75%;
+}
+/* .dashboard-action button:nth-child(2n) {
+  min-width: 25%;
+} */

@@ -14,7 +14,8 @@
           <i *ngIf='(!dev.Type)' class="fas fa-toggle-on"></i>
           <span [class]="dev.State.LoadState ? 'fas fa-lightbulb' : 'far fa-lightbulb'"
             *ngIf='(dev.Type === 1 || dev.Type === 2)'></span>
-          <i *ngIf='(dev.Type === 3 && dev.State.MeasuredData)' class="fas fa-thermometer-quarter"></i>
+          <i *ngIf='(dev.Type === 3 && dev.State.MeasuredData && dev.State.MeasuredData.Temperature)' class="fas fa-thermometer-quarter"></i>
+          <i *ngIf='(dev.Type === 3 && dev.State.MeasuredData && dev.State.MeasuredData.Humidity)' class="fas fa-tint"></i>
           <span>&nbsp;{{dev.Name}}</span>
         </td>
         <td>
@@ -29,9 +30,9 @@
           </span>
         </td>
         <td *ngIf='screenWidth > 360'>{{deviceTypeOptions[dev.Type]}}</td>
-        <td>
-          <div class="btn-group">
-            <button class="btn btn-success btn-sm" (click)='deviceCardClick(dev, $event)'>Switch</button>
+        <td> 
+          <div class="btn-group dashboard-action">
+            <button class="btn btn-success btn-sm" (click)='deviceCardClick(dev, $event)'>{{[1,2].includes(dev.Type) ? 'Switch' : 'Open'}}</button>
             <button class="btn btn-outline-dark btn-sm" [routerLink]="['/details', dev.Key]">
               <span class="fas fa-cog"></span>
             </button>

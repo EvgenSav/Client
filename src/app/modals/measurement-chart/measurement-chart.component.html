@@ -1,12 +1,16 @@
 <div class="modal-header">
-    <h5 class="modal-title pull-left">{{title}}</h5>    
-    <input type="text" placeholder="Datepicker" class="form-control" [(bsValue)]='date'
-        (bsValueChange)="dateChangeHandler($event)" [bsConfig]="{ isAnimated: true }" bsDatepicker style="max-width: 125px;">
+    <h5 class="modal-title pull-left">
+        <i *ngIf="measureKeys.includes('Temperature')" class="fas fa-thermometer-quarter"></i>
+        <i *ngIf="measureKeys.includes('Humidity')" class="fas fa-tint"></i>
+    </h5>
+    <input type="text" placeholder="Datepicker" class="form-control" [(bsValue)]='date' (click)='inputClick($event)'
+        (bsValueChange)="dateChangeHandler($event)" [bsConfig]="{ isAnimated: true }" bsDatepicker
+        style="max-width: 125px;">
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
-    </button>    
+    </button>
 </div>
 
-<div class="modal-body">    
+<div class="modal-body">
     <app-line-chart [data]='dataset'></app-line-chart>
 </div>

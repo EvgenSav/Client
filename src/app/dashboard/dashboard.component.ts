@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit {
  
   openChart = (devId: number) => {
         const initialState = {
+          date: new Date(),
           deviceFk: devId,
           onDateChange: (devId: number, date: Date) => this.actionLogService.getActionLogByDate(devId, date.toISOString())
           }

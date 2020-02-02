@@ -13,10 +13,10 @@ import { LineChartComponent } from 'src/app/line-chart/line-chart.component';
 })
 export class MeasurementChartComponent implements OnInit {
   @ViewChild(LineChartComponent, null) chart: LineChartComponent;
-  title: string = "";
+  measureKeys: string[] = [];
   deviceFk: number;
   dataset: IChartDataSet = { xAxis: [], ChartLines: [] };
-  date: Date = new Date();
+  date: Date;
   onDateChange: (devId: number, date: Date) => Observable<IActionLogItem[]>;
   prepareChartData = (logItems: IActionLogItem[]) => {
     const lines: IChartLine[] = [];
@@ -43,23 +43,26 @@ export class MeasurementChartComponent implements OnInit {
     return { lines, measureKeys };
   }
   dateChangeHandler = (date: Date) => {
-    this.date = date;
     this.onDateChange(this.deviceFk, this.date).subscribe(res => {
       const { lines, measureKeys } = this.prepareChartData(res);
       this.dataset.ChartLines = lines;
       this.dataset.xAxis = res.map(r => r.TimeStamp);
-      this.title = measureKeys.join('/');
+      this.measureKeys = measureKeys;
       this.chart.update();
     });
   }
+  inputClick = (evt) => {
+    evt.preventDefault();
+  }
   constructor(public modalRef: BsModalRef, ) { }
   ngOnInit() {
-    this.onDateChange(this.deviceFk, this.date).subscribe(res => {
+    /* this.onDateChange(this.deviceFk, this.date).subscribe(res => {
       const { lines, measureKeys } = this.prepareChartData(res);
       this.dataset.ChartLines = lines;
       this.dataset.xAxis = res.map(r => r.TimeStamp),
-      this.title = measureKeys.join('/');
+        this.title = measureKeys.join('/');
+      this.keys = measureKeys;
       this.chart.update();
-    });
+    }); */
   }
 }
