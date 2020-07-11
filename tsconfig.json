@@ -7,8 +7,15 @@
 {
   "files": [],
   "compilerOptions": {
-    "baseUrl": ".",
-    "experimentalDecorators": true
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": [
+        "src/app/*"
+      ]
+    },
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true
   },
   "references": [
     {
