@@ -27,9 +27,9 @@ export class DashboardComponent implements OnInit {
     this.devList$ = this.store.select(Devices.getDevices);
   }
   ngOnInit() {
-    this.devService.getDevices().subscribe(devices => {
+    /* this.devService.getDevices().subscribe(devices => {
       this.store.dispatch(new Actions.LoadDevices(devices));
-    });
+    }); */
   }
 
   
