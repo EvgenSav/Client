@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DevicesService } from '../devices.service';
+import { DevicesService } from '../services/devices.service';
 import { IDevice } from '../models/Device';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import { getDevices } from '../store/devices/selectors';
 import { Patch } from '../patch-helper';
 import { getRooms } from '../store/home/selectors';
-import { RequestService } from '../request.service';
+import { RequestService } from '../services/request.service';
 import { IRequest, RequestTypeEnum, RequestStepEnum, DeviceTypeEnum } from '../models/Request';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DeleteDeviceConfirmationComponent } from '../modals/delete-device-modal/modal-content.component';
@@ -24,7 +24,7 @@ export class DeviceDetailsComponent implements OnInit {
   rooms$: Observable<string[]>;
   devId: number;
   modalRef: BsModalRef;
-  constructor(private devService: DevicesService, private route: ActivatedRoute, private store: Store<IAppState>, 
+  constructor(private devService: DevicesService, private route: ActivatedRoute, private store: Store<IAppState>,
     private requestServie: RequestService, private modalService: BsModalService) {
     this.dev$ = this.store.select(getDevices).pipe(map(devs => devs.find(d => d.Key === this.devId)));
     this.rooms$ = this.store.select(getRooms);

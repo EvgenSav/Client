@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { ActionLogService } from '../action-log.service';
+import { ActionLogService } from '../services/action-log.service';
 import { IActionLogItem } from '../models/ActionLogItem';
 import { Store } from '@ngrx/store';
 import * as Actions from '../store/action-log/actions';

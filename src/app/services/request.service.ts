@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IRequest } from './models/Request';
+import { IRequest } from '../models/Request';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

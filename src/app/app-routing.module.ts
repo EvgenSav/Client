@@ -6,6 +6,8 @@ import { DeviceSettingsComponent } from './device-settings/device-settings.compo
 import { ActionLogComponent } from './action-log/action-log.component';
 import { RequestComponent } from './request/request.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { AutomationComponent } from './automation/automation.component';
+import { AutomationDetailsComponent } from './automation-details/automation-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -22,6 +24,17 @@ const routes: Routes = [
   {
     path: 'request',
     component: RequestComponent,
+    children: []
+  },
+  {
+    path: 'automation',
+    pathMatch: 'full',
+    component: AutomationComponent,
+    children: []
+  },
+  {
+    path: 'automation/:id/details',
+    component: AutomationDetailsComponent,
     children: []
   }
 ];

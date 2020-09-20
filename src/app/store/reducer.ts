@@ -8,6 +8,7 @@ import { devicesReducer } from './devices/reducer';
 import { IHomeState, homeReducer } from './home/reducer';
 import { IActionLogState, actionLogReducer } from './action-log/reducer';
 import { requestReducer, IRequestState } from './request/reducer';
+import { automationReducer, IAutomationState } from './automation/reducer';
 import { IOptionsState, optionsReducer } from './options/reducer';
 
 export interface IAppState {
@@ -15,7 +16,8 @@ export interface IAppState {
     actionLog: IActionLogState;
     home: IHomeState;
     request: IRequestState,
-    options: IOptionsState
+    options: IOptionsState,
+    automation: IAutomationState
 }
 
 export const reducer: ActionReducerMap<IAppState, any> = {
@@ -23,6 +25,7 @@ export const reducer: ActionReducerMap<IAppState, any> = {
     actionLog: actionLogReducer,
     home: homeReducer,
     request: requestReducer,
+    automation: automationReducer,
     options: optionsReducer
 };
 export function logger(reducer: ActionReducer<IAppState>):

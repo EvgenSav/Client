@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { DevicesService } from '../devices.service';
+import { DevicesService } from '../services/devices.service';
 import { IDeviceSettings } from '../models/DeviceSettings';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';

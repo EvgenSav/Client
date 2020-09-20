@@ -22,6 +22,10 @@ import { MeasurementChartComponent } from './modals/measurement-chart/measuremen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // RECOMMENDED
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AutomationComponent } from './automation/automation.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AutomationEffects } from './store/automation/effects';
+import { AutomationDetailsComponent } from './automation-details/automation-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     DeleteDeviceConfirmationComponent,
     NewRequestModalComponent,
     LineChartComponent,
-    MeasurementChartComponent
+    MeasurementChartComponent,
+    AutomationComponent,
+    AutomationDetailsComponent
   ],
   imports: [
     ModalModule.forRoot(),
@@ -48,6 +54,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    EffectsModule.forRoot([AutomationEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

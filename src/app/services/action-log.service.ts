@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IActionLogItem } from './models/ActionLogItem';
+import { IActionLogItem } from '../models/ActionLogItem';
 @Injectable({
   providedIn: 'root'
 })

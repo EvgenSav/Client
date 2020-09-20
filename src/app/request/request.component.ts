@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IRequest, RequestStepEnum, RequestTypeEnum, DeviceTypeEnum } from '../models/Request';
-import { RequestService } from '../request.service';
+import { RequestService } from '../services/request.service';
 import { IAppState } from '../store/reducer';
 import { Store } from '@ngrx/store';
 import { GetRequestList, AddRequest, ResetNewRequest } from 'src/app/store/request/actions';
@@ -9,7 +9,7 @@ import { getRequestList as getRequestList } from '../store/request/selectors';
 import { getRooms } from '../store/home/selectors';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { NewRequestModalComponent } from '../modals/new-request-modal/new-request-modal.component';
-import { WindowService } from '../window.service';
+import { WindowService } from '../services/window.service';
 
 @Component({
   selector: 'app-binding',

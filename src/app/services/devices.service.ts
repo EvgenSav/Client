@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { IDevice } from './models/Device';
+import { HttpClient } from '@angular/common/http';
+import { IDevice } from '../models/Device';
 import { APP_BASE_HREF } from '@angular/common';
-import { Patch } from './patch-helper';
+import { Patch } from '../patch-helper';
 
 @Injectable({
   providedIn: 'root'

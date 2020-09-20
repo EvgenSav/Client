@@ -1,0 +1,12 @@
+<div *ngIf='(automationItem$ | async); let automation'>
+    <div class='form-row'>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="name">Name</span>
+            </div>
+            <input class='form-control' type="text" aria-describedby="name" [value]='automation.Name'
+            [defaultValue]='""'
+                (change)='patchAutomation($event.target.value, "/Name")'>
+        </div>
+    </div>
+</div>

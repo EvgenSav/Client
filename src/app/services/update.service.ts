@@ -1,13 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
-import { IDevice } from './models/Device';
-import { IDevicesState } from './store/devices/reducer';
-import { IAppState } from './store/reducer'
+import { IDevice } from '../models/Device';
+import { IDevicesState } from '../store/devices/reducer';
+import { IAppState } from '../store/reducer'
 import { Store } from '@ngrx/store';
-import * as Actions from './store/devices/actions';
+import * as Actions from '../store/devices/actions';
 import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
-import { IRequest } from './models/Request';
-import { PatchRequest, DeleteRequest, AddRequest } from './store/request/actions';
+import { IRequest } from '../models/Request';
+import { PatchRequest, DeleteRequest, AddRequest } from '../store/request/actions';
 
 @Injectable({
   providedIn: 'root'

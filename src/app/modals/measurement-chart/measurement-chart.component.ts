@@ -45,7 +45,7 @@ export class MeasurementChartComponent implements OnInit {
     this.onDateChange(this.deviceFk, this.date).subscribe(res => {
       const { lines, measureKeys } = this.prepareChartData(res);
       this.dataset.ChartLines = lines;
-      this.dataset.xAxis = res.map(r => r.TimeStamp);
+      this.dataset.xAxis = res.map(r => new Date(r.TimeStamp));
       this.measureKeys = measureKeys;
       this.chart.update();
     });

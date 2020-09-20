@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DevicesService } from '../devices.service';
+import { DevicesService } from '../services/devices.service';
 import { Observable } from 'rxjs';
 import { IDevice } from '../models/Device';
 import { Store } from '@ngrx/store';
@@ -7,10 +7,10 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import * as Actions from '../store/devices/actions';
 import * as Devices from '../store/devices/selectors';
 import { IAppState } from '../store/reducer';
-import { RequestService } from '../request.service';
+import { RequestService } from '../services/request.service';
 import { DeviceTypeEnum } from '../models/Request';
 import { MeasurementChartComponent } from '../modals/measurement-chart/measurement-chart.component';
-import { ActionLogService } from '../action-log.service';
+import { ActionLogService } from '../services/action-log.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,9 +32,9 @@ export class DashboardComponent implements OnInit {
     }); */
   }
 
-  
+
   screenWidth = 360;
-  
+
   deviceCardClick = (dev: IDevice, e: Event) => {
     e.stopPropagation();
     switch (dev.Type) {
@@ -60,14 +60,14 @@ export class DashboardComponent implements OnInit {
       0 : brightLvl > 100 ?
         100 : brightLvl;
     this.devService.setBright(id, bright).subscribe();
-  } 
- 
-  openChart = (devId: number) => {
-        const initialState = {
-          date: new Date(),
-          deviceFk: devId,
-          onDateChange: (devId: number, date: Date) => this.actionLogService.getActionLogByDate(devId, date.toISOString())
-          }
-        this.modalService.show(MeasurementChartComponent, { initialState });
-      };
   }
+
+  openChart = (devId: number) => {
+    const initialState = {
+      date: new Date(),
+      deviceFk: devId,
+      onDateChange: (devId: number, date: Date) => this.actionLogService.getActionLogByDate(devId, date.toISOString())
+    }
+    this.modalService.show(MeasurementChartComponent, { initialState });
+  };
+}
